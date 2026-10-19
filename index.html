@@ -1,0 +1,2241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#121212">
+<title>Manual de Contingencia · Tenerife</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{
+  --bg:#121212; --card:#1c1c1c; --card2:#242424; --text:#e8e8e8; --muted:#a8a8a8;
+  --accent:#ff9800; --accent-bg:rgba(255,152,0,.12); --danger:#ff5c5c; --danger-bg:rgba(255,92,92,.12);
+  --ok:#66bb6a; --border:#383838; --input:#101010;
+}
+:root[data-theme="light"]{
+  --bg:#f4f4f2; --card:#ffffff; --card2:#f0f0ee; --text:#151515; --muted:#555;
+  --accent:#b35c00; --accent-bg:rgba(179,92,0,.10); --danger:#b71c1c; --danger-bg:rgba(183,28,28,.08);
+  --ok:#2e7d32; --border:#cfcfcf; --input:#ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;padding:16px;max-width:920px;margin:0 auto}
+a{color:var(--accent)}
+header{border-bottom:2px solid var(--accent);padding-bottom:12px;margin-bottom:16px}
+h1{font-size:1.35rem;text-transform:uppercase;letter-spacing:.5px;color:var(--accent);line-height:1.25}
+.sub{color:var(--muted);font-size:.85rem;margin-top:4px}
+.controls{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.controls input{flex:1 1 220px;padding:10px;background:var(--input);border:1px solid var(--border);color:var(--text);border-radius:6px;font-size:1rem}
+button{padding:10px 14px;background:var(--accent);color:#000;border:none;font-weight:700;border-radius:6px;cursor:pointer;font-size:.9rem}
+button.sec{background:var(--card2);color:var(--text);border:1px solid var(--border)}
+nav.indice{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px}
+nav.indice a{font-size:.8rem;text-decoration:none;background:var(--card2);border:1px solid var(--border);color:var(--text);padding:5px 9px;border-radius:20px}
+nav.indice a b{color:var(--accent)}
+.intro{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:22px;font-size:.92rem}
+.intro ol{margin-top:6px}
+.ficha{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:24px;scroll-margin-top:12px}
+.ficha-header{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;border-bottom:2px solid var(--accent);padding-bottom:8px;margin-bottom:12px}
+.ficha-id{background:var(--accent);color:#000;font-weight:900;padding:2px 8px;border-radius:4px;font-size:.8rem}
+.ficha-title{font-size:1.05rem;font-weight:800;text-transform:uppercase;flex:1 1 60%}
+.ficha-time{font-size:.8rem;color:var(--muted);font-family:ui-monospace,Menlo,Consolas,monospace}
+.golden-rule{background:var(--accent-bg);border-left:4px solid var(--accent);padding:10px;font-weight:700;margin-bottom:12px;font-size:.93rem}
+h3{font-size:.85rem;text-transform:uppercase;color:var(--accent);margin:14px 0 6px;letter-spacing:.4px}
+p{font-size:.92rem;margin-bottom:8px}
+ul,ol{padding-left:20px;margin-bottom:10px;font-size:.92rem}
+li{margin-bottom:4px}
+.tw{overflow-x:auto;margin:8px 0}
+table{width:100%;border-collapse:collapse;font-size:.84rem}
+th,td{border:1px solid var(--border);padding:6px 7px;text-align:left;vertical-align:top}
+th{background:var(--card2);color:var(--accent)}
+small,.nota{display:block;font-size:.8rem;color:var(--muted);margin-bottom:8px}
+.danger-box{background:var(--danger-bg);border:1px solid var(--danger);padding:10px;border-radius:6px;margin-top:12px;font-size:.88rem}
+.danger-box strong{color:var(--danger);text-transform:uppercase}
+.danger-box ol,.danger-box ul{margin:6px 0 0}
+.version{display:inline-block;font-size:.72rem;font-weight:800;border:1px solid var(--accent);color:var(--accent);padding:1px 6px;border-radius:4px;margin-right:6px;text-transform:uppercase}
+.calc{background:var(--card2);border:1px solid var(--accent);padding:12px;border-radius:8px;margin:12px 0}
+.calc strong.t{display:block;margin-bottom:8px;font-size:.88rem}
+.calc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.calc label{font-size:.8rem;display:block;margin-bottom:3px;color:var(--muted)}
+.calc input,.calc select{width:100%;padding:8px;background:var(--input);border:1px solid var(--border);color:var(--text);border-radius:5px;font-size:.95rem}
+.calc-result{margin-top:10px;padding:10px;background:var(--input);border-left:4px solid var(--accent);font-size:.92rem}
+.rellenar{border-bottom:1px dotted var(--muted);display:inline-block;min-width:90px}
+.hoja td{height:30px}
+.bloque{margin:34px 0 18px;padding:12px 14px;border:2px solid var(--accent);border-radius:8px;background:var(--accent-bg)}
+.pro{border-left:6px solid var(--danger)}
+.hs td{height:26px}
+.bloque h2{font-size:1.15rem;text-transform:uppercase;color:var(--accent);letter-spacing:.5px}
+.bloque p{margin:4px 0 0;color:var(--muted)}
+ul.check{list-style:none;padding-left:2px}
+ul.check li{display:flex;gap:8px;align-items:flex-start}
+ul.check input{margin-top:4px;width:18px;height:18px;flex:0 0 auto;accent-color:var(--accent)}
+footer{font-size:.78rem;color:var(--muted);border-top:1px solid var(--border);padding-top:12px;margin-top:10px}
+footer li{margin-bottom:3px}
+
+/* ===== IMPRESIÓN A5, BLANCO Y NEGRO, MARGEN IZQUIERDO PARA ANILLAS ===== */
+@media print{
+  @page{size:A5 portrait;margin:11mm 9mm 11mm 17mm}
+  :root,:root[data-theme="light"]{--bg:#fff;--card:#fff;--card2:#eee;--text:#000;--muted:#333;--accent:#000;--accent-bg:#eee;--danger:#000;--danger-bg:#fff;--border:#000}
+  body{background:#fff;color:#000;padding:0;font-size:8.8pt;max-width:none}
+  .no-print,.controls,nav.indice,.calc{display:none!important}
+  header{border-bottom:2px solid #000;margin-bottom:8px}
+  .intro{border:1px solid #000;break-after:page}
+  .ficha{border:2px solid #000;border-radius:0;padding:8px;margin:0;break-before:page}
+  .ficha:first-of-type{break-before:auto}
+  .ficha-id{background:#000;color:#fff}
+  .golden-rule{border-left:4px solid #000}
+  .danger-box{border:2px dashed #000}
+  .danger-box strong{text-decoration:underline}
+  h3{break-after:avoid}
+  tr,li,.golden-rule,.danger-box{break-inside:avoid}
+  a{color:#000;text-decoration:none}
+  footer{break-before:page}
+  .bloque{break-before:page;border:2px solid #000;background:#fff}
+  .bloque + .ficha{break-before:auto}
+  /* Tablas: nunca recortar en papel; ajustar al ancho */
+  .tw{overflow:visible}
+  table{table-layout:fixed;width:100%}
+  th,td{overflow-wrap:anywhere;word-break:normal;hyphens:auto;padding:3px 4px}
+  #B6-F07 table{font-size:7.4pt}
+  /* Hoja de seguimiento: página propia en A5 apaisado */
+  #B6-HOJA{page:apaisado;break-before:page}
+  #B6-HOJA table{font-size:7.6pt}
+  #B6-HOJA th{text-align:center;overflow-wrap:normal;font-size:7pt;padding:3px 1px}
+  #B6-HOJA td{height:7mm}
+  #B6-HOJA .ficha-header{margin-bottom:4px;padding-bottom:3px}
+  #B6-HOJA p{margin:2px 0;font-size:8pt}
+  #B6-HOJA .tw{margin:3px 0}
+  #B6-HOJA th:last-child{width:28%}
+  footer{page:auto}
+}
+@page apaisado{size:A5 landscape;margin:9mm 10mm 9mm 17mm}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Manual Operativo de Contingencia · Tenerife</h1>
+  <div class="sub">B1 · Primeras 72 h · B2 · Salud, higiene y fuego · B3 · Alimentación · B4 · Evacuación y seguridad · B5 · Salud familiar · B6 · Atención avanzada · B7 · Reparaciones · v7.0 (octubre 2026)</div>
+  <div class="controls">
+    <input type="search" id="buscar" placeholder="Buscar: lejía, depósito, cubo, PMR, ceniza…" aria-label="Buscar en el manual">
+    <button onclick="window.print()">Imprimir A5 / PDF</button>
+    <button class="sec" id="tema">Modo claro</button>
+  </div>
+</header>
+
+<nav class="indice" aria-label="Índice">
+  <a href="#F01"><b>01</b> Apagón T+0</a>
+  <a href="#F02"><b>02</b> Agua en casa</a>
+  <a href="#F03"><b>03</b> Potabilizar</a>
+  <a href="#F04"><b>04</b> Agua exterior</a>
+  <a href="#F05"><b>05</b> Saneamiento</a>
+  <a href="#F06"><b>06</b> Energía</a>
+  <a href="#F07"><b>07</b> Comunicaciones</a>
+  <a href="#F08"><b>08</b> Ceniza / humo</a>
+  <a href="#F09"><b>09</b> Avenidas</a>
+  <a href="#F10"><b>10</b> Sismo / tsunami / calor</a>
+  <a href="#HOJA"><b>H</b> Hoja familiar</a>
+  <a href="#B2-F01"><b>2·01</b> Botiquín</a>
+  <a href="#B2-F02"><b>2·02</b> Soluciones</a>
+  <a href="#B2-F03"><b>2·03</b> Heridas</a>
+  <a href="#B2-F04"><b>2·04</b> Esterilizar</a>
+  <a href="#B2-F05"><b>2·05</b> Higiene / jabón</a>
+  <a href="#B2-F06"><b>2·06</b> Fuego / cocina</a>
+  <a href="#B3-F01"><b>3·01</b> Despensa</a>
+  <a href="#B3-F02"><b>3·02</b> Conservar sin frío</a>
+  <a href="#B3-F03"><b>3·03</b> Silvestres y costa</a>
+  <a href="#B3-F04"><b>3·04</b> Huerto</a>
+  <a href="#B4-F01"><b>4·01</b> Mochilas</a>
+  <a href="#B4-F02"><b>4·02</b> Evacuar o quedarse</a>
+  <a href="#B4-F03"><b>4·03</b> Seguridad del hogar</a>
+  <a href="#B4-F04"><b>4·04</b> Niños y personas a cargo</a>
+  <a href="#B4-F05"><b>4·05</b> Mantenimiento</a>
+  <a href="#B5-F01"><b>5·01</b> Primeros auxilios</a>
+  <a href="#B5-F02"><b>5·02</b> Contagio en casa</a>
+  <a href="#B5-F03"><b>5·03</b> Nube tóxica</a>
+  <a href="#B6-F01"><b>6·01</b> Atención prolongada</a>
+  <a href="#B6-F02"><b>6·02</b> MARCH</a>
+  <a href="#B6-F03"><b>6·03</b> Fluidos</a>
+  <a href="#B6-F04"><b>6·04</b> TCE</a>
+  <a href="#B6-F05"><b>6·05</b> Ortopedia</a>
+  <a href="#B6-F06"><b>6·06</b> Infección</a>
+  <a href="#B6-F07"><b>6·07</b> Fármacos</a>
+  <a href="#B6-F08"><b>6·08</b> Material</a>
+  <a href="#B6-F09"><b>6·09</b> IMV / legal</a>
+  <a href="#B6-HOJA"><b>6·H</b> Hoja de seguimiento</a>
+  <a href="#B7-F01"><b>7·01</b> Kit y adhesivos</a>
+  <a href="#B7-F02"><b>7·02</b> Fontanería</a>
+  <a href="#B7-F03"><b>7·03</b> Electricidad</a>
+  <a href="#B7-F04"><b>7·04</b> Cristales, goteras, puertas</a>
+  <a href="#B7-F05"><b>7·05</b> Coche y bici</a>
+  <a href="#B7-F06"><b>7·06</b> Ropa y equipo</a>
+</nav>
+
+<section class="intro">
+  <strong>Cómo usar este manual</strong>
+  <ol>
+    <li>Ante cualquier corte general: <b>Ficha 01</b> y después <b>02</b>. Son las que más se usan.</li>
+    <li>Las fichas 03 a 05 son para cuando el corte supera las 24-48 h.</li>
+    <li>Las fichas 08 a 10 son para eventos concretos. Léelas <b>antes</b> de necesitarlas.</li>
+    <li>Rellena a mano la <b>Hoja familiar</b> después de imprimir. Ese dato no debe vivir solo en el móvil.</li>
+    <li><b>Bloque 2</b> (salud, higiene y fuego): para cuando los suministros no se reponen en días o semanas. Las fórmulas están pensadas para que las prepare un adulto con calma, no con prisa.</li>
+    <li><b>Bloque 3</b> (alimentación): la despensa se prepara hoy. Lo silvestre y el huerto son complementos, no un plan de sustento.</li>
+    <li><b>Bloque 4</b> (evacuación y seguridad): las casillas de las listas se pueden marcar en el móvil y se recuerdan en ese dispositivo. En papel, márcalas a lápiz.</li>
+    <li><b>Bloque 5</b> (salud familiar): pensado para que lo use cualquiera de la casa cuando vosotros no estáis.</li>
+    <li><b>Bloque 6</b> (atención avanzada): <b>uso exclusivo de profesionales sanitarios</b> con formación en emergencias. Las dosis son de referencia: verificar siempre en ficha técnica.</li>
+    <li><b>Bloque 7</b> (reparaciones): arreglos provisionales para salir del paso. Cuando vuelva la normalidad, el arreglo definitivo lo hace un profesional, sobre todo en gas y electricidad.</li>
+  </ol>
+  <small>Este manual no sustituye las órdenes de las autoridades. Si Protección Civil o el 1-1-2 dan una instrucción, esa instrucción manda.</small>
+</section>
+
+<!-- ============ F01 ============ -->
+<section class="ficha" id="F01">
+  <div class="ficha-header">
+    <span class="ficha-id">B1-F01</span>
+    <span class="ficha-title">Protocolo T+0: apagón insular</span>
+    <span class="ficha-time">0 - 30 MIN</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: primero luz de emergencia y agua; después, información fiable. No improvises con la instalación eléctrica ni con llamas dentro de casa.</div>
+  <h3>Secuencia</h3>
+  <ol>
+    <li><b>Luz:</b> frontal o linterna, siempre en un sitio fijo que toda la familia conozca.</li>
+    <li><b>¿Es general?</b> Mira el alumbrado público y las casas vecinas. Si solo falla tu casa, revisa el cuadro: diferencial o IGA saltado.</li>
+    <li><b>Agua:</b> el depósito del sótano es tu reserva principal (ver Ficha 02).
+      <ul>
+        <li>Si la casa toma el agua del depósito con una <b>bomba</b>, sin luz los grifos dejarán de dar agua. Tendrás que sacarla por la llave de vaciado o por la boca de registro.</li>
+        <li>Si el depósito se llena desde la red con una boya, <b>cierra su llave de llenado</b> en cuanto la red pierda presión o haya aviso de agua no potable. Así no se mezcla agua dudosa con tu reserva.</li>
+        <li>Mientras quede presión en la red, llena botellas y ollas. La bañera, para la cisterna y la limpieza.</li>
+      </ul>
+    </li>
+    <li><b>Electricidad:</b> baja los magnetotérmicos de los circuitos con motores o electrónica: inducción, horno, aire acondicionado, termo y bomba. Deja <b>subido uno de alumbrado</b> como testigo para saber cuándo vuelve la luz. Desenchufa TV y ordenadores.</li>
+    <li><b>Frío:</b> no abras nevera ni congelador y <b>anota la hora del corte</b>. La nevera aguanta unas 4 h; el congelador lleno, unas 48 h, y a media carga, unas 24 h.</li>
+    <li><b>Información:</b> radio a pilas (Ficha 07). Pon el móvil en ahorro extremo. Al 1-1-2 solo emergencias reales.</li>
+    <li><b>Garaje comunitario:</b> la puerta motorizada no abrirá. Localiza el desbloqueo manual. No uses ascensores.</li>
+  </ol>
+  <h3>Cuando vuelva la corriente</h3>
+  <ul>
+    <li>Espera 5 a 10 minutos a que la red se estabilice.</li>
+    <li>Sube los circuitos <b>uno a uno</b>: primero alumbrado, luego nevera, y lo demás después.</li>
+    <li>No bebas agua de la red hasta que tu ayuntamiento o la empresa de aguas confirmen que es potable. Al principio, deja correr el grifo unos minutos.</li>
+  </ul>
+  <h3>Preparación (hoy)</h3>
+  <ul>
+    <li>Coche siempre con el depósito a la mitad o más: sin luz, las gasolineras no surten.</li>
+    <li>Algo de efectivo en billetes pequeños: sin luz no hay datáfonos.</li>
+    <li>Saber dónde están la llave general del agua, la del depósito, la del gas y el cuadro eléctrico (anótalo en la Hoja familiar).</li>
+  </ul>
+  <div class="danger-box"><strong>Peligros críticos</strong>
+    <ol>
+      <li><b>Nunca</b> conectes una batería, estación de energía o generador a un enchufe de pared con un cable macho-macho. Puedes electrificar la red de la calle y matar a un operario, o quemar el equipo cuando vuelva la corriente.</li>
+      <li>Generadores, barbacoas y hornillos de gas o carbón: <b>nunca</b> dentro de casa, del sótano ni del garaje. El monóxido de carbono no se ve ni se huele.</li>
+      <li>Velas: solo vigiladas y lejos de cortinas. Mejor no usarlas; las lámparas LED no queman la casa.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ F02 ============ -->
+<section class="ficha" id="F02">
+  <div class="ficha-header">
+    <span class="ficha-id">B1-F02</span>
+    <span class="ficha-title">Reserva de agua en casa: depósito, termo y cisternas</span>
+    <span class="ficha-time">15 - 30 MIN</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: antes de buscar agua fuera, gasta la que ya tienes dentro, empezando por la de mejor calidad. Agua de beber primero; la de peor calidad, para higiene y cisterna.</div>
+  <h3>Cuánta agua tienes (rellenar)</h3>
+  <div class="tw"><table>
+    <tr><th>Fuente</th><th>Litros</th><th>Calidad / uso</th></tr>
+    <tr><td>Depósito del sótano</td><td>≈ 500</td><td>Potable si venía de la red y está bien cerrado. Clorar si lleva más de 3-5 días parado o hay dudas</td></tr>
+    <tr><td>Termo eléctrico</td><td><span class="rellenar"></span></td><td>Potable si la red lo era. No es estéril; puede traer sedimentos (dejar reposar)</td></tr>
+    <tr><td>Agua embotellada</td><td><span class="rellenar"></span></td><td>La mejor. Rotarla cada año</td></tr>
+    <tr><td>Cisternas de inodoro (≈ 6 L cada una)</td><td><span class="rellenar"></span></td><td>Si no tiene pastillas químicas: potabilizar (Ficha 03). Si las tiene: solo para la cisterna</td></tr>
+  </table></div>
+
+  <div class="calc no-print">
+    <strong class="t">Calculadora de autonomía de agua</strong>
+    <div class="calc-grid">
+      <div><label for="aRes">Reserva total (litros)</label><input type="number" id="aRes" value="500" min="0"></div>
+      <div><label for="aPer">Personas</label><input type="number" id="aPer" value="3" min="1"></div>
+      <div><label for="aCon">Nivel de consumo</label>
+        <select id="aCon">
+          <option value="3">Solo beber (3 L/persona/día)</option>
+          <option value="7.5" selected>Beber, cocinar e higiene mínima (7,5 L)</option>
+          <option value="15">Básico cómodo (15 L)</option>
+        </select></div>
+    </div>
+    <div class="calc-result" id="aOut"></div>
+  </div>
+  <div class="tw"><table>
+    <tr><th>3 personas, 500 L</th><th>L/persona/día</th><th>Duración</th></tr>
+    <tr><td>Solo beber</td><td>3</td><td>≈ 55 días</td></tr>
+    <tr><td>Beber, cocinar, higiene mínima</td><td>7,5</td><td>≈ 22 días</td></tr>
+    <tr><td>Básico cómodo</td><td>15</td><td>≈ 11 días</td></tr>
+  </table></div>
+  <small>Las cifras de 3 L y 7,5-15 L son las de referencia humanitaria (estándares Esfera). En calor o con esfuerzo físico, el consumo para beber sube.</small>
+
+  <h3>Sacar agua del depósito sin bomba</h3>
+  <ol>
+    <li>Por la <b>llave de vaciado inferior</b>, si la tiene, a recipientes limpios que solo se usen para agua.</li>
+    <li>Si no la tiene, por la <b>boca de registro superior</b>, con un cazo limpio con mango largo. No metas cubos sucios ni las manos.</li>
+    <li>Vuelve a cerrar la tapa siempre. El depósito abierto atrae insectos y suciedad.</li>
+    <li>Nunca te metas dentro de un depósito.</li>
+  </ol>
+  <h3>Clorar el depósito completo (si lleva días parado o hay dudas)</h3>
+  <ul>
+    <li><b>500 L</b>: 50 ml de lejía de 50 g/L, o 62 ml de 40 g/L, o 71 ml de 35 g/L.</li>
+    <li>Remueve o deja que la entrada de agua lo mezcle. Espera 30 minutos.</li>
+    <li>Debe oler <b>ligeramente</b> a cloro. Si tienes tiras de cloro libre (de piscina), lo correcto es 0,2-1 mg/L antes de beber.</li>
+  </ul>
+  <h3>Vaciar el termo</h3>
+  <ol>
+    <li>Baja el magnetotérmico del termo. Una resistencia encendida en seco se quema.</li>
+    <li>Cierra la llave de entrada de agua fría al termo.</li>
+    <li>Abre un grifo de <b>agua caliente</b> en la planta más alta para que entre aire.</li>
+    <li>Vacía por la llave de vaciado o por la válvula de seguridad, con un cubo debajo. Si se usó hace poco, el agua sale caliente.</li>
+  </ol>
+  <h3>Preparación (hoy)</h3>
+  <ul>
+    <li>Comprobar si el depósito tiene llave de vaciado accesible. Si no, valorar que la instale un fontanero.</li>
+    <li>Tapa estanca y limpieza y desinfección del depósito una vez al año.</li>
+    <li>Garrafas o bidones de uso alimentario (2 de 20 L), cazo de mango largo, embudo y tiras de cloro libre.</li>
+    <li>20-30 L de agua embotellada, rotada cada año.</li>
+  </ul>
+  <div class="danger-box"><strong>No es agua de beber</strong>
+    <ul>
+      <li>Piscina, radiadores, circuito de placas solares térmicas (lleva anticongelante) y agua que haya entrado en el sótano por inundación.</li>
+      <li>Si el sótano se inunda y la tapa del depósito no es estanca, da el depósito por contaminado.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ F03 ============ -->
+<section class="ficha" id="F03">
+  <div class="ficha-header">
+    <span class="ficha-id">B1-F03</span>
+    <span class="ficha-title">Potabilización: clarificar y desinfectar</span>
+    <span class="ficha-time">30 - 60 MIN</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: primero agua clara, después desinfectar. El cloro y la ebullición matan microbios, pero NO quitan combustible, metales, fluoruros ni ceniza.</div>
+  <h3>Paso 1 · Clarificar</h3>
+  <ol>
+    <li><b>Reposar</b> 1-2 h y trasvasar la parte de arriba sin remover el fondo.</li>
+    <li><b>Colar</b> por varias capas de tela de algodón o por un filtro de café.</li>
+    <li><b>Filtro de capas</b> en una garrafa de 5 L sin fondo, boca abajo. Desde el tapón hacia arriba: tela de algodón, 10 cm de carbón vegetal triturado (1-3 mm), 10 cm de arena fina lavada y 10 cm de picón o grava lavada. Desecha los primeros 2 L.
+      <br><small>Este filtro solo quita turbidez y mejora olor y sabor. El carbón casero no está activado: no garantiza quitar químicos ni microbios.</small></li>
+    <li><b>Lo que sí funciona (comprar hoy):</b> un filtro portátil de membrana de 0,1-0,2 µm. Retiene bacterias y protozoos; los virus no siempre, así que después clora igualmente.</li>
+  </ol>
+  <h3>Paso 2 · Desinfectar con cloro (objetivo ≈ 5 mg/L)</h3>
+  <div class="calc no-print">
+    <strong class="t">Calculadora de cloración</strong>
+    <div class="calc-grid">
+      <div><label for="cL">Litros a tratar</label><input type="number" id="cL" value="20" min="0"></div>
+      <div><label for="cP">Producto</label>
+        <select id="cP">
+          <option value="35">Lejía 35 g/L</option>
+          <option value="40" selected>Lejía 40 g/L</option>
+          <option value="50">Lejía 50 g/L</option>
+          <option value="3.4">Solución madre de cloro granulado (5 g/L)</option>
+        </select></div>
+      <div><label for="cE">Estado del agua</label>
+        <select id="cE">
+          <option value="1">Clara, temperatura normal</option>
+          <option value="2">Algo turbia o fría (&lt;10 °C): dosis doble</option>
+        </select></div>
+    </div>
+    <div class="calc-result" id="cOut"></div>
+  </div>
+  <div class="tw"><table>
+    <tr><th>Agua</th><th>Lejía 35 g/L</th><th>Lejía 40 g/L</th><th>Lejía 50 g/L</th><th>Sol. madre granulado*</th></tr>
+    <tr><td><b>1 L</b></td><td>3 gotas</td><td>2-3 gotas</td><td>2 gotas</td><td>1,5 ml</td></tr>
+    <tr><td><b>5 L</b></td><td>14 gotas</td><td>13 gotas</td><td>10 gotas</td><td>7,5 ml</td></tr>
+    <tr><td><b>20 L</b></td><td>2,9 ml</td><td>2,5 ml</td><td>2,0 ml</td><td>30 ml</td></tr>
+    <tr><td><b>200 L</b></td><td>29 ml</td><td>25 ml</td><td>20 ml</td><td>300 ml</td></tr>
+    <tr><td><b>500 L</b></td><td>71 ml</td><td>62 ml</td><td>50 ml</td><td>0,75 L · o 3,6 g en seco</td></tr>
+    <tr><td><b>1.000 L</b></td><td>143 ml</td><td>125 ml</td><td>100 ml</td><td>1,5 L · o 7 g en seco</td></tr>
+  </table></div>
+  <small>1 ml ≈ 20 gotas de cuentagotas estándar. Agua turbia o fría: dosis doble.<br>
+  *Solución madre: 5 g (1 cucharadita rasa) de hipoclorito cálcico granulado (65-70 %, sin alguicida) en 1 L de agua. Agitar, dejar posar y usar el líquido claro. <b>No beberla.</b> Prepararla en el día o guardarla como máximo una semana en botella opaca y etiquetada.</small>
+  <ol>
+    <li>Añade la dosis, agita o remueve y espera <b>30 minutos</b> a la sombra (60 si el agua está fría).</li>
+    <li>Debe oler <b>ligeramente</b> a cloro. Si no huele, repite la dosis y espera 15 minutos más.</li>
+    <li>Si la etiqueta de tu lejía da una dosis para agua de bebida, <b>sigue la etiqueta</b>.</li>
+  </ol>
+  <h3>Alternativas</h3>
+  <ul>
+    <li><b>Hervir:</b> 1 minuto a borbotones. Por encima de 2.000 m, 3 minutos. Regla simple: <b>3 minutos siempre</b>.</li>
+    <li><b>SODIS (sol):</b> botellas PET transparentes de 2 L como máximo, sin etiqueta y con agua clara, tumbadas al sol directo 6 h. Con más de medio cielo cubierto, 2 días seguidos. No sirve con agua turbia.</li>
+  </ul>
+  <div class="danger-box"><strong>Peligros críticos</strong>
+    <ol>
+      <li>Solo lejía <b>sin detergente, sin perfume y sin aditivos</b>. En España, busca en la etiqueta "apta para la desinfección del agua de bebida".</li>
+      <li>Agua con olor a combustible o productos químicos, agua de inundación urbana o lluvia sobre ceniza volcánica reciente: <b>no se arregla con cloro ni hirviéndola</b>. Úsala para limpiar la cisterna o descártala.</li>
+      <li>Cloro granulado: es un oxidante fuerte. Guárdalo seco, cerrado y lejos de materia orgánica, combustibles y ácidos (riesgo de incendio y de gas cloro). Pierde fuerza con los años: compra envases pequeños y renuévalos.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ F04 ============ -->
+<section class="ficha" id="F04">
+  <div class="ficha-header">
+    <span class="ficha-id">B1-F04</span>
+    <span class="ficha-title">Captación exterior en Tenerife</span>
+    <span class="ficha-time">HORAS - DÍAS</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: es el último recurso, después de tu reserva y del reparto oficial (camiones cisterna, puntos de distribución). Toda agua captada fuera se clarifica y se desinfecta (Ficha 03).</div>
+  <h3>1 · Lluvia (la más rentable)</h3>
+  <ul>
+    <li><b>1 mm de lluvia = 1 litro por m².</b> La terraza de 25 m² con una lona limpia recoge unos 25 L por cada mm de lluvia.</li>
+    <li>Desecha los primeros 10-15 minutos de cada lluvia: lavan el tejado de polvo, excrementos de aves y calima.</li>
+    <li>Lluvia con calima intensa o sobre ceniza volcánica: solo para limpiar.</li>
+  </ul>
+  <h3>2 · Niebla (vertiente norte)</h3>
+  <ul>
+    <li>Zona útil: laderas expuestas al alisio (NE), aproximadamente entre 800 y 1.500 m (Anaga, La Esperanza, Las Mercedes).</li>
+    <li>Malla de sombreo tipo raschel al 35 % en <b>doble capa</b>, tensada perpendicular al viento, con un canalón abajo (tubo de PVC abierto) hacia un bidón cerrado.</li>
+    <li>Rendimiento realista: 2-10 L por m² en días de niebla densa, y <b>cero</b> los días sin niebla. Es un complemento, no una fuente segura.</li>
+  </ul>
+  <h3>3 · Barrancos, fuentes y nacientes</h3>
+  <ul>
+    <li><b>Hoy:</b> localiza y anota las fuentes y nacientes públicas de tu zona. Buscarlas durante una crisis es perder tiempo y agua.</li>
+    <li><b>Indicadores de agua cerca:</b> sauce canario, juncos, cañaverales, berros, culantrillo y zarzas muy verdes en verano.</li>
+    <li><b>Dónde cavar:</b> en la curva exterior de un meandro seco, al pie de la roca, o justo aguas arriba de un dique de basalto que cruce el cauce. Deja que el hoyo rezume y decante.</li>
+    <li>El agua de canales y atarjeas de riego puede llevar purines o abonos: siempre clarificar y clorar.</li>
+  </ul>
+  <h3>4 · Métodos de bajo rendimiento</h3>
+  <ul>
+    <li><b>Bolsa de transpiración</b> sobre una rama de arbusto <b>no tóxico</b>, al sol: realista 100-300 ml al día por bolsa.</li>
+    <li><b>Destilador de foso:</b> realista 0,1-0,5 L al día. Solo merece la pena para desalar agua de mar sin esfuerzo. No caves con calor: sudarás más agua de la que obtienes.</li>
+    <li><b>Agua de mar:</b> nunca beberla sin destilar.</li>
+  </ul>
+  <div class="danger-box"><strong>Peligros mortales</strong>
+    <ol>
+      <li><b>Galerías de agua: no entres jamás.</b> Acumulan CO₂ volcánico, que no se ve ni se huele y puede dejarte inconsciente en segundos. Capta solo en la bocamina o en el canal exterior.</li>
+      <li><b>Plantas tóxicas, prohibidas para la bolsa de transpiración y para comer:</b> tabaiba y cardón (látex cáustico), adelfa, estramonio, tartaguero o ricino, y tabaco moro (<i>Nicotiana glauca</i>, muy común en los barrancos de Tenerife).</li>
+      <li>No entres en un barranco con aviso de lluvia (Ficha 09).</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ F05 ============ -->
+<section class="ficha" id="F05">
+  <div class="ficha-header">
+    <span class="ficha-id">B1-F05</span>
+    <span class="ficha-title">Saneamiento sin agua corriente</span>
+    <span class="ficha-time">DESDE EL DÍA 1</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: las heces mal gestionadas causan diarreas en 48-72 h, y la diarrea gasta tu reserva de agua. Separar, cubrir, sellar y lavarse las manos siempre.</div>
+  <h3>Caso A · El alcantarillado funciona, pero no sale agua del grifo</h3>
+  <ul>
+    <li>Tira de la cisterna echando de golpe un cubo de 6-8 L de agua no potable directamente en la taza. Usa aguas grises (de fregar o lavarse).</li>
+    <li>Descarga solo cuando haya heces. La orina puede acumularse varias veces antes de tirar.</li>
+  </ul>
+  <h3>Caso B · El alcantarillado no funciona o las autoridades piden no usarlo</h3>
+  <ol>
+    <li><b>Inodoro de cubo:</b> un cubo de 15-20 L con tapa y <b>doble bolsa</b> resistente. Otra opción es vaciar la taza y poner la doble bolsa en ella.</li>
+    <li>Después de cada uso, cubre con un puñado de serrín, arena de gato, tierra seca o cal <b>hidratada</b>.</li>
+    <li><b>Separa la orina</b> en un recipiente aparte: reduce mucho el olor y el volumen. Diluida, puede verterse en tierra lejos de pozos.</li>
+    <li>Cierra la bolsa cuando esté a 2/3, con doble nudo, y guárdala en un contenedor cerrado, fuera de casa y a la sombra, hasta que haya recogida.</li>
+  </ol>
+  <h3>Riesgo específico: tu sótano</h3>
+  <ul>
+    <li>Sin electricidad, las estaciones de bombeo de aguas residuales pueden pararse. Las aguas negras pueden <b>retornar por los desagües más bajos</b>, es decir, los del sótano.</li>
+    <li>Tapa los sumideros y desagües del sótano con un tapón o una bolsa llena de arena o de agua. Si notas burbujeo u olor en los desagües, deja de descargar.</li>
+    <li>Preparación: valorar con un fontanero una válvula antirretorno en la acometida del sótano.</li>
+  </ul>
+  <h3>Higiene</h3>
+  <ul>
+    <li>Lavado de manos con agua y jabón usando una garrafa con grifo. El gel hidroalcohólico no sirve si las manos están visiblemente sucias.</li>
+    <li>Superficies del baño: 20 ml de lejía (35-50 g/L) en 1 L de agua (≈ 0,1 %). Prepárala a diario.</li>
+  </ul>
+  <h3>Kit (hoy)</h3>
+  <ul><li>Cubo de 20 L con tapa, 30 bolsas gruesas de 60-100 L, 10 kg de serrín o arena de gato, guantes de nitrilo, papel higiénico, jabón, lejía y una garrafa con grifo.</li></ul>
+  <div class="danger-box"><strong>Peligros</strong>
+    <ol>
+      <li><b>Nunca</b> mezcles lejía con amoníaco, salfumán, vinagre u otros limpiadores ácidos: liberan gases tóxicos.</li>
+      <li>Cal <b>viva</b> no: quema la piel y reacciona con el agua. Solo cal hidratada.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ F06 ============ -->
+<section class="ficha" id="F06">
+  <div class="ficha-header">
+    <span class="ficha-id">B1-F06</span>
+    <span class="ficha-title">Energía: con y sin estación de batería</span>
+    <span class="ficha-time">CONTINUO</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: la electricidad escasa se reserva para luz, información y comunicación. La comida se gestiona por tiempo, no por enchufe.</div>
+
+  <h3><span class="version">Versión A</span>Sin estación de energía (situación actual)</h3>
+  <ul>
+    <li><b>Kit mínimo:</b> frontal por persona, 2-3 baterías externas (powerbank) de 20.000 mAh, radio FM/DAB+ a pilas o dinamo, lámparas LED recargables y pilas de repuesto (las de litio aguantan años almacenadas).</li>
+    <li><b>Cuánto da un powerbank:</b> Wh = mAh × 3,7 ÷ 1.000. Uno de 20.000 mAh son unos 74 Wh, lo que equivale a unas 3-4 cargas reales de móvil.</li>
+    <li><b>Móvil:</b> ahorro extremo, brillo mínimo y datos apagados salvo en las ventanas de consulta. Con la red saturada, <b>un SMS pasa mejor que una llamada</b>.</li>
+    <li><b>Coche como cargador:</b> USB o 12 V solo con el motor en marcha y <b>al aire libre</b>, nunca en el garaje comunitario. No descargues la batería del coche si vas a necesitar arrancarlo.</li>
+    <li><b>Cocina:</b> la cocina de butano funciona sin luz. Si el encendido es eléctrico, enciende con un mechero. Ventila siempre.</li>
+  </ul>
+  <h3>Plan de alimentos refrigerados sin electricidad</h3>
+  <div class="tw"><table>
+    <tr><th>Tiempo desde el corte</th><th>Acción</th></tr>
+    <tr><td>0-4 h</td><td>Nevera cerrada. No abrir.</td></tr>
+    <tr><td>4-24 h</td><td>Consumir primero lo más delicado de la nevera: carne y pescado frescos, lácteos y sobras. Lo que haya pasado más de 2 h por encima de 4 °C, se tira.</td></tr>
+    <tr><td>24-48 h</td><td>Congelador lleno y sin abrir: aún congelado. Si un alimento conserva cristales de hielo, puede volver a congelarse.</td></tr>
+    <tr><td>&gt; 48 h</td><td>Cocinar o desechar lo descongelado. Pasar a despensa no perecedera.</td></tr>
+  </table></div>
+  <small>Un termómetro de nevera (unos pocos euros) elimina las dudas. Medicación que necesita frío: consulta su ficha técnica. Muchas insulinas en uso aguantan semanas a temperatura ambiente, pero depende del producto.</small>
+
+  <h3><span class="version">Versión B</span>Con estación de ≈ 3 kWh y 2 paneles de 200 W</h3>
+  <p>Cálculo con una estación de unos 3.000 Wh (por ejemplo, la Bluetti Elite 300, de 3.014 Wh y 2.400 W de salida). Con otra capacidad, usa la calculadora.</p>
+  <div class="tw"><table>
+    <tr><th>Equipo indispensable</th><th>Consumo diario aproximado</th><th>Cómo usarlo</th></tr>
+    <tr><td>Nevera combi A++</td><td>600-1.000 Wh (más en verano)</td><td>Conectada <b>de forma continua</b>: su termostato ya hace los ciclos. Limitarla a pocas horas la deja por encima de 4 °C.</td></tr>
+    <tr><td>Arcón congelador (si lo hay)</td><td>500-1.000 Wh</td><td>Solo si sobra energía; si no, aplicar el plan de alimentos.</td></tr>
+    <tr><td>Móviles (3 × 2 cargas)</td><td>≈ 90 Wh</td><td>Por USB-C, preferiblemente a mediodía con sol.</td></tr>
+    <tr><td>Iluminación LED</td><td>60-100 Wh</td><td>Bombillas USB o de 12 V. No encender el inversor de 230 V solo para luz.</td></tr>
+    <tr><td>Router de fibra</td><td>10-15 W</td><td>Solo en ventanas de consulta. Puede no tener servicio aunque tenga corriente.</td></tr>
+    <tr><td>Radio</td><td>&lt; 5 Wh</td><td>Despreciable.</td></tr>
+  </table></div>
+  <small>Consumo real de tu nevera: kWh/año de la etiqueta energética ÷ 365 × 1,3 (margen por calor y aperturas).</small>
+  <ul>
+    <li><b>Capacidad útil:</b> 3.014 Wh × 0,85 (pérdidas del inversor) ≈ <b>2,5 kWh</b>. Con un consumo básico de 0,8-1,2 kWh/día, son <b>2-3 días sin sol</b>.</li>
+    <li><b>Producción solar con 400 W de paneles:</b> W × horas de sol pico × 0,75. En el sur con cielo despejado (5-6 h) salen 1,5-1,8 kWh/día, suficiente para el consumo básico de forma indefinida. En el norte con "panza de burro" (2-3 h) salen 0,6-0,9 kWh/día, lo que supone déficit, así que hay que recortar.</li>
+    <li><b>Inversor de 230 V:</b> consume en vacío (decenas de W). Apágalo cuando no lo uses y prioriza las salidas USB y de 12 V.</li>
+    <li><b>Paneles:</b> orientados al sur, a unos 30° todo el año (40° en invierno, 15° en verano). Con cielo totalmente cubierto, en horizontal. Evita <b>cualquier sombra parcial</b>: una sombra pequeña hunde la producción del panel entero.</li>
+    <li><b>Mantenimiento:</b> guárdala al 60-80 % y recárgala cada 3 meses. Haz un simulacro de 24 h al año con la nevera conectada para conocer tus números reales.</li>
+  </ul>
+  <div class="calc no-print">
+    <strong class="t">Calculadora de autonomía eléctrica</strong>
+    <div class="calc-grid">
+      <div><label for="eCap">Capacidad de la batería (Wh)</label><input type="number" id="eCap" value="3014" min="0"></div>
+      <div><label for="eCon">Consumo diario (Wh)</label><input type="number" id="eCon" value="1000" min="1"></div>
+      <div><label for="ePan">Paneles solares (W totales)</label><input type="number" id="ePan" value="400" min="0"></div>
+      <div><label for="eHsp">Cielo</label>
+        <select id="eHsp">
+          <option value="5.5">Sur, despejado (≈ 5,5 h pico)</option>
+          <option value="4">Intermedio (≈ 4 h)</option>
+          <option value="2.5">Norte, panza de burro (≈ 2,5 h)</option>
+          <option value="0">Sin sol / sin paneles</option>
+        </select></div>
+    </div>
+    <div class="calc-result" id="eOut"></div>
+  </div>
+  <div class="danger-box"><strong>Peligros</strong>
+    <ol>
+      <li>Nada de cables macho-macho a la instalación de casa (ver F01). Para alimentar la casa entera hace falta un conmutador instalado por un electricista.</li>
+      <li>No tapes la estación ni la pongas al sol o junto a una fuente de calor mientras trabaja.</li>
+      <li>Si algún día tienes generador: al aire libre, a más de 6 m de puertas y ventanas. Nunca en el garaje ni en el sótano.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ F07 ============ -->
+<section class="ficha" id="F07">
+  <div class="ficha-header">
+    <span class="ficha-id">B1-F07</span>
+    <span class="ficha-title">Comunicaciones e información</span>
+    <span class="ficha-time">10 MIN</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: primero RECIBIR información oficial; transmitir solo cuando aporte algo. Escuchar cualquier banda es legal; transmitir, en muchas, requiere licencia.</div>
+  <h3>Recibir (sin licencia)</h3>
+  <div class="tw"><table>
+    <tr><th>Fuente</th><th>Dónde</th><th>Notas</th></tr>
+    <tr><td><b>RNE en FM</b> · centro de Izaña</td><td>90,0 · 92,3 · 96,2 · 98,1 MHz</td><td>Cubre la mayor parte de la isla. El listado oficial no indica qué programa va en cada frecuencia: <b>sintoniza y anota</b> cuál es Radio Nacional y cuál Radio 5.</td></tr>
+    <tr><td><b>RNE en FM</b> · Los Cristianos</td><td>92,6 · 95,4 · 104,0 · 105,6 MHz</td><td>Zona sur.</td></tr>
+    <tr><td><b>RNE en DAB+</b></td><td>Desde Izaña</td><td>Necesita un receptor DAB+.</td></tr>
+    <tr><td><b>Onda Media</b></td><td>—</td><td><b>RNE la apagó el 30-12-2025.</b> Ya no es una vía de información.</td></tr>
+    <tr><td><b>ES-Alert</b></td><td>Móvil</td><td>Llega por la red móvil si funciona. Comprueba en ajustes que las alertas de emergencia están activadas.</td></tr>
+    <tr><td>Otras emisoras FM locales</td><td><span class="rellenar"></span></td><td>Anótalas tras escanear la banda en casa.</td></tr>
+  </table></div>
+  <h3>Transmitir</h3>
+  <div class="tw"><table>
+    <tr><th>Sistema</th><th>Frecuencia / canal</th><th>Uso y límites</th></tr>
+    <tr><td><b>PMR446</b> (sin licencia, 0,5 W)</td><td>Canal 7, subtono 7 (446,08125 MHz / CTCSS 85,4 Hz)</td><td>Convención de socorro en montaña en España. Para la familia, elige un canal propio y anótalo en la Hoja. Alcance realista: 0,5-2 km en ciudad y bastante más desde un alto con vista despejada.</td></tr>
+    <tr><td><b>Radioaficionado 2 m</b></td><td>145,500 MHz FM (llamada en símplex)</td><td><b>Transmitir exige licencia.</b> Escuchar es libre. Repetidores de Tenerife: <span class="rellenar"></span> (consultar a la asociación local de radioaficionados; no los he podido verificar).</td></tr>
+    <tr><td><b>VHF marina</b></td><td>Canal 16 (156,800 MHz)</td><td>Escucha libre. Transmitir solo con titulación o en peligro real e inminente.</td></tr>
+  </table></div>
+  <h3>Disciplina de uso</h3>
+  <ul>
+    <li><b>Ventanas horarias:</b> radios apagadas. Se encienden 5 minutos en las horas acordadas (por ejemplo, 09, 12, 15, 18 y 21 h). Potencia baja salvo que no haya respuesta.</li>
+    <li><b>Plan familiar:</b> un punto de encuentro principal y otro alternativo, y un contacto <b>fuera de la isla</b>, que suele ser más fácil de localizar que alguien de la zona afectada.</li>
+    <li><b>Mensajes cortos:</b> quién, dónde, cómo estáis y qué necesitáis.</li>
+  </ul>
+  <h3>Antena dipolo (solo equipos de radioaficionado con antena desmontable)</h3>
+  <ul>
+    <li>Longitud de <b>cada brazo</b> en cm = 7.125 ÷ frecuencia en MHz.</li>
+    <li>145 MHz: dos brazos de 49 cm. 433 MHz: dos brazos de 16,5 cm.</li>
+    <li>El vivo del coaxial va a un brazo y la malla al otro. Cuélgalo en vertical y lo más alto posible.</li>
+    <li>Los equipos PMR446 llevan por normativa antena fija y no admiten antena exterior.</li>
+  </ul>
+  <div class="danger-box"><strong>Regla técnica</strong> Nunca transmitas sin antena conectada: la potencia reflejada quema el paso final del equipo en segundos.</div>
+</section>
+
+<!-- ============ F08 ============ -->
+<section class="ficha" id="F08">
+  <div class="ficha-header">
+    <span class="ficha-id">B1-F08</span>
+    <span class="ficha-title">Ceniza volcánica, humo de incendio y calima</span>
+    <span class="ficha-time">30 MIN</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: la ceniza volcánica es roca y vidrio pulverizados: no se frota, se retira con agua o con pala. Las mascarillas FFP filtran partículas, NO gases.</div>
+  <h3>Protección personal</h3>
+  <ul>
+    <li>Mascarilla <b>FFP2 o FFP3 bien ajustada y seca</b>. No la mojes ni le pongas paños húmedos encima: pierde capacidad de filtrar y cuesta más respirar.</li>
+    <li>Gafas de montura integral cerradas. <b>Nada de lentillas</b>.</li>
+    <li>Manga larga. Mascarillas de talla infantil para los niños.</li>
+    <li>Ante olor fuerte a azufre o irritación intensa (gases como SO₂), la mascarilla no protege: aléjate o confínate en el interior.</li>
+  </ul>
+  <h3>Vivienda</h3>
+  <ul>
+    <li>Cierra ventanas y apaga cualquier ventilación o aire acondicionado que tome aire de fuera.</li>
+    <li>Sella rendijas, rejillas y cajones de persiana con cinta y plástico.</li>
+    <li>Una sola puerta de entrada, con esclusa: zona para quitarse ropa y calzado.</li>
+  </ul>
+  <h3>Peso de la ceniza sobre tejados</h3>
+  <div class="tw"><table>
+    <tr><th>Espesor</th><th>Seca</th><th>Mojada</th><th>Riesgo</th></tr>
+    <tr><td>1 cm</td><td>≈ 7-13 kg/m²</td><td>≈ 10-20 kg/m²</td><td>Bajo en forjado. Vigila toldos, pérgolas y chapas.</td></tr>
+    <tr><td>5 cm</td><td>≈ 35-65 kg/m²</td><td>≈ 50-100 kg/m²</td><td><b>Alto</b> en cubiertas ligeras. Retirar antes de que llueva.</td></tr>
+    <tr><td>≥ 10 cm</td><td>≥ 70 kg/m²</td><td>≥ 100-200 kg/m²</td><td><b>Posible colapso</b> incluso en cubiertas convencionales.</td></tr>
+  </table></div>
+  <small>Una cubierta no transitable suele calcularse para unos 100 kg/m² de sobrecarga de uso. Retira la ceniza con pala de plástico, humedeciéndola un poco para que no levante polvo. Tapa los bajantes mientras barres para que no fragüe en las tuberías, y destápalos al terminar. No subas a tejados inclinados sin seguridad: hay más muertes por caídas limpiando tejados que por el propio peso de la ceniza.</small>
+  <h3>Motores y paneles solares</h3>
+  <ul>
+    <li><b>Prefiltro de motor:</b> espuma fina ligeramente aceitada sobre la toma de aire, sujeta con una media de nailon. Sacúdela a menudo y adelanta los cambios de aceite y de filtro.</li>
+    <li><b>Paneles:</b> nunca barrer en seco. Agua abundante, sin frotar.</li>
+  </ul>
+  <h3>Incendio forestal de interfaz</h3>
+  <ul>
+    <li>Obedece y adelántate a la orden de evacuación: irse pronto es lo que salva vidas.</li>
+    <li>Rutas que no suban por laderas ni sigan barrancos (efecto chimenea).</li>
+    <li>Sin vegetación seca ni leña a menos de 15-30 m de la casa, canalones limpios, butano cerrado y mangueras preparadas.</li>
+    <li>Si el fuego te alcanza dentro de casa: quédate dentro, lejos de las ventanas, con puertas y ventanas cerradas, hasta que pase el frente. La casa protege más que el exterior.</li>
+  </ul>
+  <h3>Calima intensa</h3>
+  <ul><li>Personas con patología respiratoria o cardíaca, mayores y niños: en el interior, con ventanas cerradas y FFP2 si tienen que salir.</li></ul>
+  <div class="danger-box"><strong>Peligros</strong>
+    <ol>
+      <li>La ceniza mojada conduce la electricidad: aléjate de líneas eléctricas y limpia los bornes antes de reconectar.</li>
+      <li>Ojos con ceniza: lava con abundante suero o agua limpia. No los frotes.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ F09 ============ -->
+<section class="ficha" id="F09">
+  <div class="ficha-header">
+    <span class="ficha-id">B1-F09</span>
+    <span class="ficha-title">Lluvias torrenciales y avenidas</span>
+    <span class="ficha-time">MINUTOS</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: en Tenerife el agua baja por barrancos y calles en minutos. Nunca cruces agua en movimiento: 15 cm pueden tumbar a un adulto y 30 cm pueden arrastrar un coche.</div>
+  <h3>Con aviso de la AEMET (amarillo, naranja o rojo)</h3>
+  <ul>
+    <li>Limpia sumideros, la azotea y la terraza.</li>
+    <li>Sube a plantas altas lo que tenga valor en el sótano: documentos, equipos y la estación de energía.</li>
+    <li>Si el garaje comunitario es inundable, saca el coche <b>antes</b> de la lluvia fuerte, nunca durante.</li>
+    <li>Ten la mochila y los documentos a mano.</li>
+  </ul>
+  <h3>Durante</h3>
+  <ul>
+    <li>Quédate en casa, en planta calle o superior. <b>No bajes al sótano ni al garaje</b>, ni siquiera a por el coche. En inundaciones recientes en España muchas víctimas murieron en garajes y sótanos.</li>
+    <li>Si entra agua al sótano: corta la electricidad de esa planta <b>sin pisar agua</b>. Si no puedes hacerlo sin pisar agua, no te acerques.</li>
+    <li>No circules por cauces ni badenes. Si vas en coche y el agua sube, sal y busca un punto alto. Baja la ventanilla antes de que falle el sistema eléctrico.</li>
+    <li>En un barranco, señales de avenida: ruido creciente, agua turbia de repente y ramas arrastradas. Sal <b>lateralmente y hacia arriba</b>, nunca cauce abajo.</li>
+  </ul>
+  <h3>Después</h3>
+  <ul>
+    <li>El agua de inundación está contaminada: guantes, botas y nada de contacto con heridas abiertas.</li>
+    <li>No conectes nada que se haya mojado hasta que lo revise un electricista.</li>
+    <li>Depósito del sótano inundado: no potable hasta vaciarlo, limpiarlo y desinfectarlo.</li>
+    <li>Superficies: limpiar y después desinfectar con lejía al 0,1 % (20 ml por litro).</li>
+  </ul>
+</section>
+
+<!-- ============ F10 ============ -->
+<section class="ficha" id="F10">
+  <div class="ficha-header">
+    <span class="ficha-id">B1-F10</span>
+    <span class="ficha-title">Sismo, tsunami y calor extremo</span>
+    <span class="ficha-time">SEGUNDOS</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: en un sismo, agáchate, cúbrete y agárrate. En la costa, si el terremoto es fuerte o el mar se retira de forma anormal, sube sin esperar ninguna alerta.</div>
+  <h3>Sismo</h3>
+  <ul>
+    <li>Durante: bajo una mesa robusta, lejos de ventanas y de muebles altos. No salgas corriendo por escaleras y no uses el ascensor.</li>
+    <li>Después: si huele a gas, cierra la llave, no toques interruptores y ventila. Revisa grietas en la estructura y espera réplicas. Si hay daños estructurales, sal de la casa.</li>
+    <li>Preparación: ancla a la pared los muebles altos y el depósito o las bombonas si están sueltos.</li>
+  </ul>
+  <h3>Tsunami (poco probable, pero sin margen)</h3>
+  <ul>
+    <li>Señales: terremoto fuerte notado en la costa, retirada brusca del mar o un ruido como de tren desde el mar.</li>
+    <li>Acción: sube <b>a pie</b> a más de 30 m de altura o aléjate tierra adentro <b>de inmediato</b>. No vuelvas hasta el aviso oficial: llegan varias olas.</li>
+  </ul>
+  <h3>Calor extremo (sobre todo con calima)</h3>
+  <ul>
+    <li>Persianas bajadas de día y ventilación cruzada de noche.</li>
+    <li>Beber sin esperar a tener sed. Esto aumenta el consumo de agua de la Ficha 02.</li>
+    <li>Vigila a niños y mayores. Nunca dejes a nadie ni a ningún animal dentro de un coche.</li>
+  </ul>
+</section>
+
+<!-- ============ HOJA FAMILIAR ============ -->
+<section class="ficha hoja" id="HOJA">
+  <div class="ficha-header">
+    <span class="ficha-id">HOJA</span>
+    <span class="ficha-title">Hoja familiar (rellenar a mano)</span>
+    <span class="ficha-time">ANEXO</span>
+  </div>
+  <div class="golden-rule">Imprime esta hoja, rellénala a mano y guárdala en la carpeta y en la mochila. No la guardes solo en el móvil.</div>
+  <div class="tw"><table>
+    <tr><th>Persona</th><th>Medicación crónica y dosis</th><th>Alergias / necesidades</th></tr>
+    <tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr>
+  </table></div>
+  <div class="tw"><table>
+    <tr><th>Dato</th><th>Valor</th></tr>
+    <tr><td>Punto de encuentro 1</td><td></td></tr>
+    <tr><td>Punto de encuentro 2</td><td></td></tr>
+    <tr><td>Contacto fuera de la isla</td><td></td></tr>
+    <tr><td>Canal PMR familiar y subtono</td><td></td></tr>
+    <tr><td>Horas de escucha</td><td></td></tr>
+    <tr><td>Frecuencia FM de Radio Nacional / Radio 5</td><td></td></tr>
+    <tr><td>Llave general de agua (ubicación)</td><td></td></tr>
+    <tr><td>Llave de llenado y de vaciado del depósito</td><td></td></tr>
+    <tr><td>Llave de gas / bombonas</td><td></td></tr>
+    <tr><td>Cuadro eléctrico</td><td></td></tr>
+    <tr><td>Desbloqueo manual de la puerta del garaje</td><td></td></tr>
+    <tr><td>Fuentes o nacientes públicas cercanas</td><td></td></tr>
+  </table></div>
+</section>
+
+<!-- =================================================== -->
+<!-- ===================== BLOQUE 2 ===================== -->
+<!-- =================================================== -->
+<div class="bloque" id="BLOQUE2">
+  <h2>Bloque 2 · Salud, higiene y fuego</h2>
+  <p>Para cuando la farmacia, el supermercado o la bombona no se reponen en días o semanas.</p>
+</div>
+
+<!-- ============ B2-F01 ============ -->
+<section class="ficha" id="B2-F01">
+  <div class="ficha-header">
+    <span class="ficha-id">B2-F01</span>
+    <span class="ficha-title">Botiquín y farmacia de contingencia</span>
+    <span class="ficha-time">PREPARACIÓN</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: el medicamento que salva vidas en una crisis es el que ya tienes en casa. Lo primero es tener 1-3 meses de reserva de la medicación crónica de cada persona; después, todo lo demás.</div>
+  <h3>Medicación</h3>
+  <ul>
+    <li><b>Crónica:</b> 1-3 meses de reserva por persona. Pide a tu médico que te ajuste la receta para tener margen y rota el stock: usa siempre primero lo más antiguo.</li>
+    <li><b>Básica:</b> analgésico y antitérmico en formato de adulto y en formato pediátrico (dosis según el peso, siguiendo el prospecto), antihistamínico oral, sobres de suero oral, antiácido, crema de hidrocortisona, protector solar y repelente.</li>
+    <li><b>Prospectos y fichas técnicas impresos</b> de todo lo que guardes. Sin internet, el prospecto es tu única referencia.</li>
+  </ul>
+  <h3>Material</h3>
+  <div class="tw"><table>
+    <tr><th>Uso</th><th>Material</th></tr>
+    <tr><td>Hemorragia</td><td>Torniquete de calidad (tipo CAT), vendaje de compresión, gasa para taponar heridas profundas y guantes de nitrilo.</td></tr>
+    <tr><td>Heridas</td><td>Suero fisiológico en monodosis, gasas estériles, apósitos de varios tamaños, tiras de aproximación, clorhexidina acuosa al 2 %, povidona yodada, esparadrapo, vendas, tijeras y pinzas.</td></tr>
+    <tr><td>Control</td><td>Termómetro, pulsioxímetro, tensiómetro y linterna de exploración.</td></tr>
+    <tr><td>Otros</td><td>Manta térmica, férula maleable, mascarillas FFP2, gafas de protección y bolsas de basura.</td></tr>
+    <tr><td>Esterilización</td><td>Indicadores químicos para vapor (Ficha B2-F04) y un juego de pinzas y tijeras metálicas que soporten el calor.</td></tr>
+  </table></div>
+  <h3>Conservación y caducidad</h3>
+  <ul>
+    <li>Guárdalo entre 15 y 25 °C, en un sitio seco y oscuro. El sótano suele ser mejor que la cocina o el baño. Revísalo cada 6 meses.</li>
+    <li>En una crisis, los comprimidos y cápsulas caducados que se han guardado bien suelen conservar buena parte de su potencia. Usarlos es mejor que no tener nada.</li>
+    <li><b>No te fíes de los caducados</b> en: insulina, nitroglicerina, colirios abiertos, suspensiones ya reconstituidas, vacunas y cualquier producto que haya cambiado de color, olor o aspecto.</li>
+    <li><b>Excepción:</b> en una anafilaxia, una adrenalina autoinyectable caducada es mejor que ninguna.</li>
+  </ul>
+  <div class="danger-box"><strong>Límites</strong>
+    <ol>
+      <li>Este manual no incluye pautas de antibióticos ni de medicación con receta. Su uso sin criterio clínico genera resistencias y enmascara cuadros graves.</li>
+      <li>Ante fiebre alta en niños, dificultad respiratoria, dolor torácico, alteración de la conciencia o sangrado que no cede: buscar asistencia por cualquier vía disponible.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ B2-F02 ============ -->
+<section class="ficha" id="B2-F02">
+  <div class="ficha-header">
+    <span class="ficha-id">B2-F02</span>
+    <span class="ficha-title">Soluciones caseras: suero oral, irrigación, Dakin y alcohol</span>
+    <span class="ficha-time">10 - 20 MIN</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: pesa o mide con cuchara rasa, nunca a ojo. Un suero oral demasiado salado deshidrata más, y una lejía demasiado concentrada destruye el tejido que intentas curar.</div>
+
+  <h3>1 · Suero de rehidratación oral</h3>
+  <div class="tw"><table>
+    <tr><th>Versión</th><th>Para 1 litro de agua potable</th></tr>
+    <tr><td><b>Casera</b> (la práctica)</td><td>6 cucharaditas <b>rasas</b> de azúcar (≈ 25 g) y ½ cucharadita <b>rasa</b> de sal (≈ 2,5 g).</td></tr>
+    <tr><td><b>OMS de baja osmolaridad</b> (si tienes báscula y los productos)</td><td>2,6 g de cloruro sódico, 13,5 g de glucosa anhidra, 1,5 g de cloruro potásico y 2,9 g de citrato trisódico. Si no tienes citrato, 2,5 g de bicarbonato sódico.</td></tr>
+  </table></div>
+  <ul>
+    <li><b>Comprobación:</b> no debe saber más salado que las lágrimas. Si sabe más, añade agua.</li>
+    <li><b>Cantidad tras cada deposición líquida:</b> menores de 2 años, 50-100 ml; de 2 a 10 años, 100-200 ml; mayores, lo que toleren. A sorbos pequeños y frecuentes; si vomita, esperar 10 minutos y seguir más despacio.</li>
+    <li>Una vez preparado, se conserva 24 h. Después, se tira.</li>
+  </ul>
+
+  <h3>2 · Lavado de heridas</h3>
+  <ul>
+    <li><b>El agua potable del grifo o de botella sirve para lavar heridas</b>: no infecta más que el suero fisiológico. Lo que importa es la cantidad (al menos 1 L en una herida pequeña) y que salga a chorro, por ejemplo con una jeringa de 20-50 ml.</li>
+    <li><b>Suero salino casero</b> (si prefieres isotónico): 1 L de agua y 9 g de sal (1½ cucharaditas rasas). Hervir 10 minutos tapado y usar en 24 h. <b>Solo para uso externo.</b> Nunca por vía intravenosa.</li>
+  </ul>
+
+  <h3>3 · Solución de Dakin (hipoclorito diluido para heridas)</h3>
+  <p>Para 1 litro de solución final: añade la lejía indicada, completa con agua hervida y enfriada hasta 1 L, y añade ½ cucharadita rasa de bicarbonato (≈ 2,5 g) para bajar la alcalinidad.</p>
+  <div class="tw"><table>
+    <tr><th>Concentración</th><th>Uso</th><th>Lejía 35 g/L</th><th>Lejía 40 g/L</th><th>Lejía 50 g/L</th></tr>
+    <tr><td><b>0,025 %</b></td><td>Lavado de heridas limpias o en cicatrización</td><td>7 ml</td><td>6 ml</td><td>5 ml</td></tr>
+    <tr><td><b>0,125 %</b></td><td>Heridas sucias o colonizadas</td><td>36 ml</td><td>31 ml</td><td>25 ml</td></tr>
+    <tr><td><b>0,25 %</b></td><td>Heridas muy contaminadas, durante pocos días</td><td>71 ml</td><td>62 ml</td><td>50 ml</td></tr>
+    <tr><td><b>0,5 %</b> (concentración completa)</td><td>Tejido necrótico o infección establecida, durante pocos días. <b>Citotóxica</b>: daña el tejido sano</td><td>143 ml</td><td>125 ml</td><td>100 ml</td></tr>
+  </table></div>
+  <div class="calc no-print">
+    <strong class="t">Calculadora de Dakin</strong>
+    <div class="calc-grid">
+      <div><label for="dV">Volumen final (ml)</label><input type="number" id="dV" value="1000" min="0"></div>
+      <div><label for="dL">Lejía</label>
+        <select id="dL"><option value="35">35 g/L</option><option value="40" selected>40 g/L</option><option value="50">50 g/L</option></select></div>
+      <div><label for="dP">Concentración deseada</label>
+        <select id="dP"><option value="0.025">0,025 %</option><option value="0.125" selected>0,125 %</option><option value="0.25">0,25 %</option><option value="0.5">0,5 %</option></select></div>
+    </div>
+    <div class="calc-result" id="dOut"></div>
+  </div>
+  <ul>
+    <li>Prepárala cada 24-48 h y guárdala en un frasco opaco. La luz y el aire la inactivan.</li>
+    <li>Protege la piel de alrededor de la herida con vaselina.</li>
+    <li><b>Desinfección de instrumental</b> (no es esterilización): una vez limpio, sumergirlo 10 minutos en hipoclorito al 0,5 % y aclarar con agua hervida. El cloro corroe el metal.</li>
+    <li><b>Superficies:</b> 0,1 % (20 ml de lejía por litro).</li>
+  </ul>
+
+  <h3>4 · Alcohol al 70 %</h3>
+  <ul>
+    <li>Mide 73 ml de alcohol de 96° y completa con agua hasta 100 ml.</li>
+    <li>El de 70 % desinfecta mejor la piel que el de 96°, que se evapora antes de actuar.</li>
+    <li>Desinfecta, pero <b>no mata esporas</b>.</li>
+  </ul>
+
+  <div class="danger-box"><strong>Peligros</strong>
+    <ol>
+      <li>Solo lejía sin detergente ni perfume, igual que para el agua (Ficha 03).</li>
+      <li>Suero oral: no añadir más sal "para que funcione mejor". El exceso de sodio es peligroso, sobre todo en lactantes.</li>
+      <li>Nunca mezcles lejía con alcohol, amoníaco ni ácidos.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ B2-F03 ============ -->
+<section class="ficha" id="B2-F03">
+  <div class="ficha-header">
+    <span class="ficha-id">B2-F03</span>
+    <span class="ficha-title">Heridas y quemaduras con recursos limitados</span>
+    <span class="ficha-time">SEGÚN CASO</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: controla primero el sangrado, lava después con mucha agua, y cierra solo lo que esté limpio. Una herida sucia que se cierra se infecta; abierta y bien curada, cicatriza.</div>
+  <h3>1 · Hemorragia</h3>
+  <ul>
+    <li><b>Presión directa</b> firme durante 10 minutos, sin levantar para mirar.</li>
+    <li>Herida profunda en axila o ingle: taponarla con gasa y presionar.</li>
+    <li><b>Sangrado masivo en una extremidad:</b> torniquete alto y muy apretado, hasta que pare el sangrado. <b>Anota la hora</b> en la frente o en el torniquete.</li>
+  </ul>
+  <h3>2 · Lavar</h3>
+  <ul>
+    <li>Agua potable a chorro, abundante (Ficha B2-F02). Retira la suciedad visible con pinzas limpias.</li>
+    <li>No uses agua oxigenada ni alcohol dentro de la herida: dañan el tejido.</li>
+  </ul>
+  <h3>3 · ¿Cerrar o dejar abierta?</h3>
+  <div class="tw"><table>
+    <tr><th>Cerrar si…</th><th>NO cerrar si…</th></tr>
+    <tr><td>Está limpia, tiene menos de 6-8 h (cara y cuero cabelludo, hasta 24 h) y los bordes se juntan sin tensión.</td><td>Es una mordedura (salvo en la cara), una punción, una herida por aplastamiento o con suciedad incrustada, o tiene más de 12 h. Dejarla abierta, cubierta, con cura diaria. Si en 3-5 días está limpia, se puede cerrar entonces (cierre diferido).</td></tr>
+  </table></div>
+  <h3>4 · Cómo cerrar</h3>
+  <ul>
+    <li><b>Tiras de aproximación:</b> la primera opción en cortes pequeños.</li>
+    <li><b>Cianoacrilato</b> (pegamento instantáneo): para bordes limpios y sin tensión. Junta los bordes con los dedos y aplica el pegamento <b>por encima</b>, nunca dentro de la herida.</li>
+    <li><b>Sutura improvisada:</b> sedal de pesca de nailon monofilamento de 0,15-0,25 mm (equivale aproximadamente a 4-0 o 3-0). Desinfectarlo 20 minutos en alcohol al 70 % o en hipoclorito al 0,5 % y aclararlo. <b>No uses hilo dental</b>: es multifilamento y retiene bacterias.</li>
+  </ul>
+  <h3>5 · Apósitos sin suministro</h3>
+  <ul>
+    <li>Tela de algodón hervida 10 minutos y secada al sol o planchada, o esterilizada en la olla (Ficha B2-F04).</li>
+    <li>Cambiarlo cada día y siempre que se moje.</li>
+    <li><b>Miel:</b> la de grado médico está esterilizada y es útil en heridas y quemaduras. La miel cruda, solo como último recurso: nunca en heridas profundas ni en menores de 1 año (puede llevar esporas de <i>Clostridium</i>).</li>
+  </ul>
+  <h3>6 · Quemaduras</h3>
+  <ul>
+    <li><b>Enfriar con agua a temperatura ambiente</b> (15-25 °C) durante 20 minutos. Sirve hasta 3 h después de la quemadura.</li>
+    <li>Quitar anillos y pulseras antes de que se hinche. Cubrir con film transparente sin apretar.</li>
+    <li>No usar hielo, pasta de dientes, aceite ni mantequilla. No reventar las ampollas.</li>
+    <li><b>Buscar asistencia por cualquier vía</b> si la quemadura es extensa o afecta a la cara, las manos, los genitales o todo el contorno de un miembro, si es en un niño, o si fue por electricidad o productos químicos.</li>
+  </ul>
+  <h3>7 · Vigilar la infección</h3>
+  <ul>
+    <li>Signos de alarma: rojez que se extiende, calor, pus, líneas rojas que suben por el miembro, o fiebre.</li>
+    <li>Marca con bolígrafo el borde de la rojez y anota la hora. Si sigue avanzando, hay que buscar tratamiento.</li>
+  </ul>
+  <div class="danger-box"><strong>Preparación crítica</strong> Revisa hoy el calendario vacunal de toda la familia, sobre todo el <b>tétanos</b>. En un desastre no habrá dosis de refuerzo disponibles.</div>
+</section>
+
+<!-- ============ B2-F04 ============ -->
+<section class="ficha" id="B2-F04">
+  <div class="ficha-header">
+    <span class="ficha-id">B2-F04</span>
+    <span class="ficha-title">Esterilización con olla a presión</span>
+    <span class="ficha-time">60 - 90 MIN</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: hervir desinfecta, pero no mata las esporas de tétanos ni de gangrena. Para eso hace falta vapor a presión, sin aire dentro y durante el tiempo suficiente. Y nada se esteriliza si antes no se ha limpiado.</div>
+  <h3>Antes de empezar: conoce tu olla</h3>
+  <ul>
+    <li>Busca en el manual de tu olla la presión de trabajo. Una olla a ≈ 1 bar alcanza ≈ 121 °C. Muchas domésticas trabajan a 0,6-0,8 bar, es decir, ≈ 113-117 °C.</li>
+    <li>Compra <b>indicadores químicos para vapor</b> de tipo integrador ("clase 5"). La cinta indicadora simple solo dice que hubo vapor, no que fuera suficiente.</li>
+  </ul>
+  <h3>Procedimiento</h3>
+  <ol>
+    <li><b>Limpiar:</b> lava el instrumental con agua, jabón y cepillo hasta que no quede resto visible. Aclara bien.</li>
+    <li><b>Envolver:</b> en paños de algodón de doble capa o en bolsas de papel, con las pinzas y tijeras <b>abiertas</b>. Mete un indicador dentro de un paquete.</li>
+    <li><b>Cargar:</b> el agua mínima que indique el fabricante (normalmente 2-3 dedos). Pon una rejilla o cestillo para que nada toque el agua, y no llenes más de 2/3 de la olla.</li>
+    <li><b>Purgar el aire:</b> calienta con la válvula en posición de escape (o sin el peso) hasta que salga vapor continuo durante <b>5 minutos</b>. Después cierra o presuriza. El aire atrapado hace bajar la temperatura real.</li>
+    <li><b>Tiempo</b>, desde que la válvula suelta vapor de forma continua y con el fuego mantenido:
+      <ul><li><b>30 minutos</b> si la olla trabaja a ≈ 1 bar.</li><li><b>45 minutos</b> si trabaja a 0,6-0,8 bar.</li></ul></li>
+    <li><b>Enfriar:</b> apaga el fuego y deja que pierda la presión sola. Nunca la fuerces.</li>
+    <li><b>Secar:</b> con la tapa entreabierta 15-20 minutos, o cerca del calor. Un paquete húmedo se recontamina.</li>
+    <li><b>Guardar:</b> en una bolsa limpia y cerrada. Úsalo en un máximo de 7 días. Si el paquete se moja o se rompe, vuelve a esterilizarlo.</li>
+  </ol>
+  <h3>Lo que no aguanta la olla</h3>
+  <ul>
+    <li>Plásticos no autoclavables y sedal de pesca barato (se deforma).</li>
+    <li>Para estos: desinfección química (Ficha B2-F02).</li>
+    <li><b>Hervir 10-20 minutos</b> basta para desinfectar material de curas de heridas superficiales.</li>
+  </ul>
+  <div class="danger-box"><strong>Peligros</strong>
+    <ol>
+      <li>Revisa la válvula y la junta antes de cada uso. Una válvula obstruida convierte la olla en un riesgo de explosión.</li>
+      <li>No abras nunca la olla con presión dentro.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ B2-F05 ============ -->
+<section class="ficha" id="B2-F05">
+  <div class="ficha-header">
+    <span class="ficha-id">B2-F05</span>
+    <span class="ficha-title">Higiene y jabón: almacenar y fabricar</span>
+    <span class="ficha-time">1 H + 4-6 SEMANAS</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: el jabón más barato es el que compras hoy. Fabricarlo exige sosa cáustica, protección y semanas de curado, así que es un recurso de crisis larga, no de los primeros días.</div>
+  <h3>1 · Reserva</h3>
+  <ul>
+    <li><b>Referencia humanitaria:</b> unos 250 g de jabón personal y 200 g de jabón para ropa por persona y mes. Para 3 personas, ≈ 1,4 kg al mes. Seis meses de reserva cuestan poco y ocupan una caja.</li>
+    <li>Guarda también 1-2 kg de sosa cáustica en perlas, en un envase hermético y etiquetado, fuera del alcance de los niños.</li>
+  </ul>
+  <h3>2 · Lavar ropa sin lavadora</h3>
+  <ul>
+    <li>En un cubo con agua jabonosa, removiendo con un desatascador limpio a modo de émbolo, durante 5 minutos.</li>
+    <li>Dos aclarados. Escurrir retorciendo entre dos personas.</li>
+    <li>El agua de aclarado se reutiliza para la cisterna (Ficha 05).</li>
+  </ul>
+  <h3>3 · Jabón en frío con sosa cáustica</h3>
+  <div class="tw"><table>
+    <tr><th>Aceite (1.000 g, colado)</th><th>Sosa cáustica</th><th>Agua</th><th>Sobreengrasado</th></tr>
+    <tr><td>Oliva (girasol: 127 g)</td><td><b>128 g</b></td><td>300 g</td><td>5 %</td></tr>
+    <tr><td>Aceite usado de freír (composición desconocida)</td><td><b>123 g</b></td><td>300 g</td><td>8 % (margen de seguridad)</td></tr>
+  </table></div>
+  <div class="calc no-print">
+    <strong class="t">Calculadora de sosa</strong>
+    <div class="calc-grid">
+      <div><label for="jA">Aceite (g)</label><input type="number" id="jA" value="1000" min="0"></div>
+      <div><label for="jT">Tipo de aceite</label>
+        <select id="jT"><option value="0.135">Oliva</option><option value="0.134">Girasol</option><option value="0.134|8">Usado de freír</option></select></div>
+      <div><label for="jS">Sobreengrasado</label>
+        <select id="jS"><option value="5">5 % (higiene personal)</option><option value="8">8 % (más suave / aceite dudoso)</option></select></div>
+    </div>
+    <div class="calc-result" id="jOut"></div>
+  </div>
+  <ol>
+    <li><b>Protección:</b> gafas, guantes y manga larga. Sin niños ni animales cerca. Usa recipientes de acero inoxidable, plástico duro (PP o HDPE) o vidrio grueso. <b>Nunca aluminio.</b></li>
+    <li>Al aire libre, echa <b>la sosa sobre el agua</b> (nunca al revés) y remueve. Sube a unos 80-90 °C y desprende vapores: no los respires.</li>
+    <li>Deja que la sosa y el aceite se templen a 35-45 °C. Vierte la sosa sobre el aceite.</li>
+    <li>Bate hasta la "traza", una textura de natillas. Con batidora de mano tarda 5-10 minutos; a mano, más de una hora.</li>
+    <li>Viértelo en un molde forrado, tápalo y córtalo a las 24-48 h.</li>
+    <li><b>Curado:</b> 4-6 semanas en un lugar ventilado, sin que las pastillas se toquen. Antes de eso sigue siendo cáustico.</li>
+    <li><b>Control:</b> con tira de pH, debe dar 8-10. Si da más, deja que cure más tiempo.</li>
+  </ol>
+  <p>Rendimiento: ≈ 1,4 kg de jabón por cada 1.000 g de aceite.</p>
+  <h3>4 · Último recurso: lejía de ceniza (potasa)</h3>
+  <ul>
+    <li>Ceniza <b>blanca</b> de madera dura en un cubo con un agujero en el fondo cubierto de grava y tela. Echa agua de lluvia caliente poco a poco y recoge el líquido que gotea (en plástico, vidrio o acero inoxidable).</li>
+    <li><b>Concentración suficiente:</b> un huevo fresco flota y asoma un círculo de unos 2-3 cm. Si se hunde, vuelve a pasar el líquido por ceniza nueva o hiérvelo para concentrarlo.</li>
+    <li>Cocer 2 partes de esa lejía con 1 parte de grasa durante 2-3 h removiendo, hasta obtener una pasta que haga espuma. Sale un <b>jabón blando</b>.</li>
+    <li>Si añades un puñado de sal al final, el jabón se separa y endurece algo.</li>
+    <li>La concentración es imprevisible, así que la calidad también. Úsalo para ropa y limpieza antes que para la piel.</li>
+  </ul>
+  <div class="danger-box"><strong>Peligros</strong>
+    <ol>
+      <li><b>Sosa en la piel:</b> agua abundante durante 15 minutos. No uses vinagre.</li>
+      <li><b>Sosa en los ojos:</b> agua continua durante 15-20 minutos y asistencia urgente. Es una causticación grave.</li>
+      <li>Etiqueta todo y no uses nunca para cocinar los utensilios del jabón.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ B2-F06 ============ -->
+<section class="ficha" id="B2-F06">
+  <div class="ficha-header">
+    <span class="ficha-id">B2-F06</span>
+    <span class="ficha-title">Fuego, ignición y cocina eficiente</span>
+    <span class="ficha-time">CONTINUO</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: dentro de casa solo se cocina con gas y con ventilación. La leña y el carbón, solo al aire libre, y nunca con alerta por riesgo de incendio. Lo que más combustible ahorra no es la estufa, es la olla tapada y la caja de retención de calor.</div>
+  <h3>1 · Lo que ya tienes: butano</h3>
+  <ul>
+    <li>Una bombona de 12,5 kg da para unas 4-6 semanas de cocina normal, y bastante más con olla a presión y caja de retención.</li>
+    <li>Ten dos: una en uso y otra llena. Si el encendido es eléctrico, enciende con un mechero.</li>
+    <li><b>Las bombonas no se guardan en el sótano.</b> El butano pesa más que el aire, se acumula abajo y puede explotar. Siempre a nivel de calle o superior, de pie y ventiladas.</li>
+  </ul>
+  <h3>2 · Ignición (en un bote estanco)</h3>
+  <ul>
+    <li><b>Mecheros</b> (varios) y <b>cerillas</b> en un bote cerrado.</li>
+    <li><b>Ferrocerio</b> (barra de pedernal).</li>
+    <li><b>Yesca casera:</b> bolas de algodón impregnadas en vaselina. Cada una arde 2-4 minutos y prende incluso con humedad. Es la mejor yesca que puedes preparar hoy.</li>
+    <li><b>Tela carbonizada:</b> trozos de algodón en una lata con un agujero de 2 mm, al fuego hasta que deje de salir humo. Atrapa cualquier chispa.</li>
+    <li><b>Sin mechero:</b> lana de acero fina tocando los dos bornes de una pila de 9 V, o una lupa o lente Fresnel al sol.</li>
+    <li><b>Tea de pino canario:</b> prende incluso húmeda, pero solo de leña que ya tengas legalmente. Arrancarla de pinos o tocones del monte está prohibido y daña el pinar.</li>
+  </ul>
+  <h3>3 · Caja de retención ("olla bruja")</h3>
+  <ol>
+    <li>Lleva el guiso a ebullición fuerte, tapado: 5 minutos para arroz o pasta y 10-15 minutos para legumbres remojadas 12 h.</li>
+    <li>Métela enseguida en una caja o nevera portátil forrada de mantas, ropa o espuma, sin huecos de aire, y tápala bien.</li>
+    <li>Sigue cocinándose sola: arroz en 1-1,5 h y legumbres en 3-4 h.</li>
+    <li>Ahorra un 50-70 % de gas.</li>
+    <li>Si al sacarla no está hecha o está tibia (menos de 60 °C), vuelve a hervirla 5 minutos antes de comer. No dejes la comida cocinada a temperatura tibia más de 2 h.</li>
+  </ol>
+  <h3>4 · Estufa cohete (solo exterior: terraza o patio)</h3>
+  <ul>
+    <li>Con bloques o ladrillos, un conducto en "L":
+      <ul>
+        <li>Tramo horizontal de 15 × 15 cm de sección y 25 cm de largo, por donde entran las ramas y el aire.</li>
+        <li>Chimenea vertical de 40-50 cm.</li>
+        <li>Olla encima, sobre 3 piedras o una rejilla, dejando que salgan los gases.</li>
+      </ul>
+    </li>
+    <li>Quema ramas del grosor de un dedo con muy poco humo cuando está caliente.</li>
+  </ul>
+  <h3>5 · Seguridad contra incendios en casa (hoy)</h3>
+  <ul><li>Extintor ABC de 6 kg en la cocina, manta ignífuga y detector de monóxido de carbono.</li></ul>
+  <div class="danger-box"><strong>Peligros</strong>
+    <ol>
+      <li>Barbacoa, carbón, hornillo de camping o estufa cohete <b>dentro de casa, del sótano o del garaje: monóxido de carbono, potencialmente mortal</b>. Ni siquiera "un rato con la ventana abierta".</li>
+      <li>Con aviso de riesgo de incendio forestal, cualquier fuego al aire libre puede estar prohibido y causar un incendio. Consulta las restricciones del Cabildo.</li>
+      <li>Si huele a gas: cierra la bombona, no toques interruptores y ventila.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- =================================================== -->
+<!-- ===================== BLOQUE 3 ===================== -->
+<!-- =================================================== -->
+<div class="bloque" id="BLOQUE3">
+  <h2>Bloque 3 · Alimentación</h2>
+  <p>Canarias depende de los barcos. Si se corta el suministro, lo que te alimenta es lo que tienes guardado.</p>
+</div>
+
+<!-- ============ B3-F01 ============ -->
+<section class="ficha" id="B3-F01">
+  <div class="ficha-header">
+    <span class="ficha-id">B3-F01</span>
+    <span class="ficha-title">Despensa estratégica</span>
+    <span class="ficha-time">PREPARACIÓN</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: guarda lo que ya coméis y rótalo. Una despensa que nadie consume caduca; una que se usa y se repone siempre está fresca. Objetivo mínimo: 2 semanas. Objetivo sólido: 1 mes.</div>
+  <h3>Cuánto hace falta</h3>
+  <ul>
+    <li>Referencia humanitaria: <b>2.100 kcal por persona y día</b> (es una media; los niños pequeños necesitan menos y los adultos activos, más).</li>
+    <li>3 personas durante 30 días ≈ 190.000 kcal, es decir, unos 50-55 kg de alimento seco de despensa.</li>
+  </ul>
+  <div class="calc no-print">
+    <strong class="t">Calculadora de despensa</strong>
+    <div class="calc-grid">
+      <div><label for="pA">Adultos y adolescentes</label><input type="number" id="pA" value="2" min="0"></div>
+      <div><label for="pN">Niños menores de 10 años</label><input type="number" id="pN" value="1" min="0"></div>
+      <div><label for="pD">Días</label><input type="number" id="pD" value="30" min="1"></div>
+    </div>
+    <div class="calc-result" id="pOut"></div>
+  </div>
+  <h3>Qué guardar (por densidad calórica y duración)</h3>
+  <div class="tw"><table>
+    <tr><th>Alimento</th><th>kcal / 100 g</th><th>Duración cerrado</th><th>Nota</th></tr>
+    <tr><td>Aceite de oliva</td><td>900</td><td>12-18 meses</td><td>La mayor densidad calórica. En lugar oscuro.</td></tr>
+    <tr><td>Frutos secos y crema de cacahuete</td><td>550-620</td><td>6-12 meses</td><td>Se enrancian; rotar.</td></tr>
+    <tr><td>Leche en polvo</td><td>≈ 500</td><td>1-2 años</td><td>Proteína y calcio, clave para niños.</td></tr>
+    <tr><td>Galletas, chocolate</td><td>450-550</td><td>6-12 meses</td><td>Moral y calorías sin cocinar.</td></tr>
+    <tr><td>Avena, gofio</td><td>370-380</td><td>6-12 meses</td><td>El gofio no necesita cocción.</td></tr>
+    <tr><td>Arroz, pasta</td><td>350-360</td><td>2 años o más</td><td>Gasta agua y gas.</td></tr>
+    <tr><td>Legumbres secas</td><td>≈ 340</td><td>1-2 años</td><td>Se endurecen con el tiempo. Gastan mucha agua y gas.</td></tr>
+    <tr><td><b>Legumbres en bote</b></td><td>≈ 100</td><td>2-3 años</td><td><b>Listas para comer</b>: sin agua ni gas.</td></tr>
+    <tr><td>Atún, sardinas, caballa en aceite</td><td>200-300</td><td>3-5 años</td><td>Proteína sin cocinar.</td></tr>
+    <tr><td>Fruta y verdura en lata</td><td>40-90</td><td>2-3 años</td><td>Vitaminas. Su líquido también hidrata.</td></tr>
+    <tr><td>Azúcar, miel, sal</td><td>0-400</td><td>Indefinida</td><td>Sal también para conservar (B3-F02).</td></tr>
+  </table></div>
+  <small>Densidad calórica aproximada. Las duraciones son orientativas para envases cerrados en un lugar fresco y seco: revisa siempre la fecha impresa y el aspecto.</small>
+  <h3>Reglas de una buena despensa</h3>
+  <ul>
+    <li><b>Primero en entrar, primero en salir:</b> lo nuevo, detrás.</li>
+    <li><b>Prioriza lo que se come sin cocinar</b> (latas, gofio, frutos secos). Así ahorras agua (Ficha 02) y gas (B2-F06).</li>
+    <li>Guarda en el sótano, en cajas cerradas y separadas del suelo, lejos de humedad y de roedores.</li>
+    <li>Abrelatas manual (dos), multivitamínico y comida para mascotas si las hay.</li>
+    <li>Necesidades especiales: alimentos infantiles, sin gluten, etc., con más margen que el resto.</li>
+  </ul>
+  <h3>Racionar en una crisis larga</h3>
+  <ul>
+    <li><b>Nunca racionar el agua de beber</b>: se raciona la comida.</li>
+    <li>Reducir la actividad física; un adulto sano tolera semanas con menos calorías de las necesarias. Los niños, embarazadas y enfermos tienen prioridad.</li>
+    <li>Fuente de vitamina C cada día: fruta en lata, tunos, verdura fresca o un multivitamínico. Sin ella, el escorbuto aparece en 1-3 meses.</li>
+  </ul>
+</section>
+
+<!-- ============ B3-F02 ============ -->
+<section class="ficha" id="B3-F02">
+  <div class="ficha-header">
+    <span class="ficha-id">B3-F02</span>
+    <span class="ficha-title">Conservar alimentos sin frío</span>
+    <span class="ficha-time">HORAS - DÍAS</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: las bacterias necesitan agua, calor y tiempo. Conservar es quitarles agua (secar, salar), acidificar (vinagre) o calentar (cocción, conserva ácida). Si dudas de un alimento, se tira: una intoxicación sin hospital puede matar.</div>
+  <h3>1 · Secado al sol (fruta, verdura, hierbas)</h3>
+  <ul>
+    <li>Láminas de 3-5 mm sobre rejilla o malla, en sitio soleado y ventilado, tapadas con mosquitera para que no lleguen moscas.</li>
+    <li>En el sur de la isla, con sol y viento: 2-4 días. En el norte húmedo: puede no secar bien; acaba junto a la estufa o el horno de gas a fuego mínimo.</li>
+    <li>Está listo cuando no suelta humedad al apretar (fruta: textura de cuero; verdura: crujiente). Guárdalo en frascos herméticos.</li>
+  </ul>
+  <h3>2 · Pescado salado y seco ("jareas")</h3>
+  <ol>
+    <li>Pescado <b>magro</b> y fresco (el azul y graso se enrancia). Abrirlo, eviscerar, quitar la cabeza y lavar bien.</li>
+    <li>Cubrir por todas partes con <b>sal gruesa</b>: una cama, el pescado abierto, otra capa. Piezas finas 24 h; gruesas 48 h, en recipiente con drenaje.</li>
+    <li>Sacudir la sal y colgar al sol y al viento, protegido de moscas, recogiéndolo de noche si hay humedad.</li>
+    <li>Listo cuando está rígido y ha perdido la mitad del peso o más (normalmente varios días). Antes de consumir, desalar en agua de 12 a 24 h cambiándola varias veces.</li>
+  </ol>
+  <h3>3 · Encurtidos con vinagre</h3>
+  <ul>
+    <li>Verdura en tarro limpio, cubierta por completo con <b>vinagre de al menos 5 % de acidez sin diluir</b> (o como mínimo 1:1 con agua si después se pasteuriza el tarro al baño maría 15 minutos).</li>
+    <li>Sal al gusto. Siempre por debajo del líquido. Si sale moho o huele mal, se tira entero.</li>
+  </ul>
+  <h3>4 · Conservas en tarro: solo alimentos ácidos</h3>
+  <ul>
+    <li><b>Sí, al baño maría</b>: fruta en almíbar, mermelada y tomate con 1 cucharada de zumo de limón por medio litro. Tarros llenos, tapa nueva y 20-40 minutos de hervor sumergidos, según tamaño.</li>
+    <li><b>No, al baño maría</b>: verduras no ácidas, legumbres, carne, pescado, setas. Riesgo de <b>botulismo</b>, que no se ve, no se huele y puede matar. Solo con una olla de conservas a presión y receta validada.</li>
+  </ul>
+  <h3>5 · Enfriador de barro ("zeer pot")</h3>
+  <ul>
+    <li>Una maceta de barro sin esmaltar dentro de otra mayor, 3-4 cm de arena o picón húmedo entre ambas, tapado con paño mojado, a la sombra y con corriente de aire.</li>
+    <li>Usa <b>agua dulce</b> (la salada cristaliza en los poros). Funciona bien con aire seco y caliente (sur, calima). En el norte húmedo enfría poco.</li>
+    <li>Sirve para verdura y fruta. No sustituye a la nevera para carne, pescado ni lácteos.</li>
+  </ul>
+  <div class="danger-box"><strong>Peligros</strong>
+    <ol>
+      <li><b>Ajo, hierbas o verdura en aceite a temperatura ambiente: riesgo de botulismo.</b> Solo en la nevera y unos días.</li>
+      <li>Lata hinchada, que salpica al abrir, oxidada en las juntas o con olor raro: se tira sin probar.</li>
+      <li>El botulismo se sospecha por visión doble, dificultad para tragar y debilidad que baja desde la cara, horas o días después de comer. Es una emergencia.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ B3-F03 ============ -->
+<section class="ficha" id="B3-F03">
+  <div class="ficha-header">
+    <span class="ficha-id">B3-F03</span>
+    <span class="ficha-title">Alimentos silvestres y de costa en Tenerife</span>
+    <span class="ficha-time">SEGÚN CASO</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: lo silvestre da vitaminas y algo de variedad, no calorías suficientes. Si no tienes certeza total de qué planta es, no se come. Una sola confusión puede matar.</div>
+  <h3>Plantas comunes y reconocibles</h3>
+  <div class="tw"><table>
+    <tr><th>Planta</th><th>Qué se come</th><th>Precaución</th></tr>
+    <tr><td><b>Tunera</b> (<i>Opuntia</i>)</td><td>Tunos (fruto, verano) y pencas tiernas peladas, hervidas o asadas.</td><td>Quitar las espinas finas (gloquidios): frotar con trapo grueso o pasar por la llama. Guantes.</td></tr>
+    <tr><td><b>Ñamera</b> (<i>Colocasia</i>)</td><td>El ñame (tubérculo), muy calórico.</td><td><b>Crudo es tóxico.</b> Pelar con guantes y hervir 45-60 minutos.</td></tr>
+    <tr><td><b>Berros</b></td><td>Hojas y tallos.</td><td>En aguas con ganado pueden transmitir fasciola (parásito hepático): <b>siempre cocidos</b>.</td></tr>
+    <tr><td><b>Verdolaga</b></td><td>Hojas y tallos, crudos o cocidos.</td><td>Muy común en huertas y aceras.</td></tr>
+    <tr><td><b>Vinagrera</b> (<i>Rumex lunaria</i>)</td><td>Hojas tiernas en poca cantidad.</td><td>Rica en oxalatos: con moderación.</td></tr>
+    <tr><td><b>Higueras, almendros, castaños</b></td><td>Higos, almendras dulces, castañas (norte).</td><td>Almendras amargas no. Castañas siempre cocidas o asadas.</td></tr>
+    <tr><td>Raíz de helecho</td><td>Almidón (tradicional en hambrunas).</td><td><b>Solo en hambruna extrema</b>: contiene un carcinógeno que el lavado no elimina del todo.</td></tr>
+  </table></div>
+  <h3>Costa</h3>
+  <ul>
+    <li><b>Lapas, burgados y cangrejos</b> del charco en bajamar: proteína rápida. Existen tallas mínimas, vedas y licencias de marisqueo. Fuera de una emergencia real, respétalas.</li>
+    <li>No recolectar cerca de desagües o emisarios, ni tras lluvias fuertes o vertidos.</li>
+    <li><b>Pesca desde la costa:</b> carrete, sedal, anzuelos variados y plomos ocupan poco. La pesca recreativa requiere licencia.</li>
+  </ul>
+  <div class="danger-box"><strong>Peligros mortales</strong>
+    <ol>
+      <li><b>Ciguatera:</b> en Canarias se han dado más de cien casos, sobre todo por <b>medregal y mero</b>, también de tamaño moderado. No comas grandes peces depredadores sin control sanitario. Cocinarlos no elimina la toxina.</li>
+      <li><b>Umbelíferas</b> (familia del hinojo, el perejil y la zanahoria silvestre): incluye la <b>cicuta</b>, mortal. Si no estás seguro, no.</li>
+      <li>Nunca: adelfa, tabaco moro, ricino o tartaguero, estramonio, tabaiba y cardón, ni setas silvestres sin un experto.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ B3-F04 ============ -->
+<section class="ficha" id="B3-F04">
+  <div class="ficha-header">
+    <span class="ficha-id">B3-F04</span>
+    <span class="ficha-title">Huerto de crisis en terraza y macetas</span>
+    <span class="ficha-time">3 - 5 MESES</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: un huerto en 25 m² no alimenta a una familia; aporta vitaminas y algo de calorías. Empezarlo durante la crisis significa cosechar a los 3-5 meses, así que lo útil es tener semillas y saber hacerlo antes.</div>
+  <h3>Números realistas</h3>
+  <ul>
+    <li>Batata en 25 m²: unos 50-60 kg en 4-5 meses, es decir, unas 45.000-50.000 kcal. Equivale a unos 7 días de alimento para 3 personas.</li>
+    <li>Conclusión: complemento valioso, no sustituto de la despensa.</li>
+  </ul>
+  <h3>Cultivos más rentables en Tenerife</h3>
+  <div class="tw"><table>
+    <tr><th>Cultivo</th><th>Hasta cosechar</th><th>Por qué</th></tr>
+    <tr><td><b>Batata</b></td><td>4-5 meses</td><td>Muy productiva con calor; las hojas también se comen cocidas. Se planta por esqueje.</td></tr>
+    <tr><td><b>Papas</b></td><td>3-4 meses</td><td>Calóricas. Se plantan de papa de semilla o de papas brotadas.</td></tr>
+    <tr><td><b>Judías / habichuelas</b></td><td>2-3 meses</td><td>Proteína; enriquecen la tierra.</td></tr>
+    <tr><td><b>Calabaza, calabacín</b></td><td>2-4 meses</td><td>Mucho volumen por planta; la calabaza se guarda meses.</td></tr>
+    <tr><td><b>Acelgas, lechugas, rúcula</b></td><td>1-2 meses</td><td>Cosecha rápida y continua de vitaminas.</td></tr>
+    <tr><td><b>Hierbas</b> (perejil, cilantro)</td><td>1-2 meses</td><td>Sabor y algo de vitamina C.</td></tr>
+  </table></div>
+  <h3>Cómo</h3>
+  <ul>
+    <li>Contenedores de 30-40 cm de profundidad (sacos de cultivo, cajas, bidones cortados con agujeros de drenaje). Sustrato con compost.</li>
+    <li><b>Riego:</b> aguas grises de lavar verdura o de aclarados, con jabón suave y sin lejía. <b>No riegues con la reserva de agua potable.</b></li>
+    <li>Riega al amanecer o al atardecer. Acolcha la tierra con paja u hojas secas para reducir la evaporación.</li>
+  </ul>
+  <h3>Preparación (hoy)</h3>
+  <ul>
+    <li>Sobres de semillas <b>no híbridas</b> (variedades tradicionales), que dan semilla reutilizable. Guárdalas secas y frescas, y renuévalas cada 2-3 años.</li>
+    <li>Un par de sacos de sustrato, herramientas de mano y una prueba real: una temporada de cultivo en tiempos normales enseña más que este manual.</li>
+  </ul>
+</section>
+
+<!-- =================================================== -->
+<!-- ===================== BLOQUE 4 ===================== -->
+<!-- =================================================== -->
+<div class="bloque" id="BLOQUE4">
+  <h2>Bloque 4 · Evacuación y seguridad</h2>
+  <p>Saber irse a tiempo, saber quedarse bien, y mantener el plan vivo.</p>
+</div>
+
+<!-- ============ B4-F01 ============ -->
+<section class="ficha" id="B4-F01">
+  <div class="ficha-header">
+    <span class="ficha-id">B4-F01</span>
+    <span class="ficha-title">Mochilas de evacuación (72 h)</span>
+    <span class="ficha-time">PREPARACIÓN</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: una mochila por persona, junto a la salida y lista para cogerla en 2 minutos. El adulto carga como máximo un 20 % de su peso; un niño, un 10 %. Lo que no se puede cargar no sirve.</div>
+  <h3>Mochila de adulto</h3>
+  <ul class="check">
+    <li>Agua: 2-3 L, más pastillas potabilizadoras o un filtro de membrana pequeño.</li>
+    <li>Comida sin cocinar para 3 días: barritas, frutos secos, latas pequeñas con abrefácil.</li>
+    <li>Frontal y pilas de repuesto. Radio FM/DAB+ pequeña.</li>
+    <li>Powerbank cargado y cables.</li>
+    <li>Botiquín personal y <b>7 días de la medicación crónica</b>, con copia de la receta.</li>
+    <li>Mascarillas FFP2 (4) y gafas de protección.</li>
+    <li>Ropa: muda, abrigo, chubasquero, calzado cerrado y gorra.</li>
+    <li>Manta térmica, navaja o multiherramienta, cinta americana, mechero y silbato.</li>
+    <li>Higiene: jabón, cepillo y pasta, papel higiénico, gel hidroalcohólico y compresas si hace falta.</li>
+    <li>Efectivo en billetes pequeños (100-200 €).</li>
+    <li>Copia de llaves de casa y del coche.</li>
+  </ul>
+  <h3>Documentos (en funda estanca)</h3>
+  <ul class="check">
+    <li>Fotocopias del DNI, tarjeta sanitaria, libro de familia, pólizas de seguros y escrituras o contrato de alquiler.</li>
+    <li>Informes médicos relevantes y calendario vacunal.</li>
+    <li>Lista de teléfonos en papel (Hoja familiar).</li>
+    <li>Fotos recientes de cada miembro de la familia (por si hay que buscar a alguien).</li>
+    <li>Copia digital cifrada en un USB, además de en la nube.</li>
+  </ul>
+  <h3>Mochila infantil (adaptar a la edad)</h3>
+  <ul class="check">
+    <li>Tarjeta impermeable con su nombre, los de los padres, teléfonos y punto de encuentro, dentro de la mochila y en un bolsillo de la ropa.</li>
+    <li>Agua y snacks que le gusten.</li>
+    <li>Muda, abrigo y frontal propio.</li>
+    <li>Un juguete o libro pequeño, y algo que le dé seguridad.</li>
+    <li>Silbato, y que sepa usarlo: 3 pitidos = "estoy aquí".</li>
+  </ul>
+  <h3>Si hay mascota</h3>
+  <ul class="check">
+    <li>Transportín o correa, 3 días de comida y agua, cartilla, y foto con el animal (prueba de propiedad).</li>
+  </ul>
+  <div class="danger-box"><strong>Revisión</strong> Cada 6 meses: agua, comida, medicación y pilas. Ajusta la ropa a la estación y a la talla de los niños.</div>
+</section>
+
+<!-- ============ B4-F02 ============ -->
+<section class="ficha" id="B4-F02">
+  <div class="ficha-header">
+    <span class="ficha-id">B4-F02</span>
+    <span class="ficha-title">Evacuar o quedarse</span>
+    <span class="ficha-time">MINUTOS</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: si las autoridades ordenan evacuar, se evacúa sin discutir y pronto. Si no hay orden, quedarse en casa suele ser lo más seguro: tienes agua, comida, refugio y tu plan.</div>
+  <div class="tw"><table>
+    <tr><th>Quedarse (confinamiento)</th><th>Irse (evacuación)</th></tr>
+    <tr><td>Apagón, temporal, calima, ceniza ligera, humo lejano, ola de calor, sismo sin daños estructurales.</td><td>Orden oficial; incendio que se acerca; daños estructurales en la casa; agua entrando con riesgo; gases volcánicos; tsunami.</td></tr>
+  </table></div>
+  <h3>Antes de que pase (hoy)</h3>
+  <ul class="check">
+    <li>Dos rutas de salida desde casa y desde el trabajo. Ninguna por cauces de barranco.</li>
+    <li>Punto de encuentro 1 (cerca de casa) y punto 2 (fuera del barrio), y un contacto fuera de la isla. Anótalo en la Hoja familiar.</li>
+    <li>Saber abrir a mano la puerta del garaje comunitario.</li>
+    <li>Conocer el plan de emergencia del colegio y quién está autorizado a recoger a los niños.</li>
+    <li>Depósito del coche siempre por encima de la mitad.</li>
+    <li>Un sitio al que ir: familia o amigos en otra zona de la isla. Los albergues oficiales son el último recurso.</li>
+  </ul>
+  <h3>Al evacuar</h3>
+  <ol>
+    <li>Coger mochilas, documentos, medicación y móviles. Nada más.</li>
+    <li>Ropa de algodón o lana, manga larga y calzado cerrado.</li>
+    <li>Cerrar el gas. Cerrar el agua y la luz solo si da tiempo o lo indican las autoridades.</li>
+    <li>Cerrar puertas y ventanas (frena el fuego y a los intrusos).</li>
+    <li>Dejar una nota visible: quién se fue, cuándo y adónde.</li>
+    <li>Seguir las rutas indicadas, no los atajos. Si hay humo en la carretera, luces encendidas y despacio.</li>
+    <li>Avisar al contacto de fuera de la isla al llegar.</li>
+  </ol>
+  <div class="danger-box"><strong>Errores que matan</strong>
+    <ol>
+      <li>Esperar a ver el fuego para irse.</li>
+      <li>Volver a casa a por algo.</li>
+      <li>Cruzar agua en movimiento (Ficha 09).</li>
+      <li>Refugiarse en sótanos o garajes durante una inundación.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ B4-F03 ============ -->
+<section class="ficha" id="B4-F03">
+  <div class="ficha-header">
+    <span class="ficha-id">B4-F03</span>
+    <span class="ficha-title">Seguridad del hogar con poco presupuesto</span>
+    <span class="ficha-time">PREPARACIÓN</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: en los desastres, el saqueo masivo es mucho menos frecuente de lo que se cree; lo habitual es la ayuda entre vecinos. La mejor seguridad es una comunidad organizada y una casa que no llame la atención.</div>
+  <h3>Discreción</h3>
+  <ul>
+    <li>No anuncies tus reservas ni tu equipo, ni en persona ni en redes.</li>
+    <li>De noche, luz hacia dentro: cortinas o persianas bajadas. El ruido del inversor o del generador también delata.</li>
+    <li>Basura de latas y envases: no la dejes visible a la puerta.</li>
+  </ul>
+  <h3>Refuerzos baratos (puerta principal y planta calle)</h3>
+  <ul class="check">
+    <li>Tornillos largos (≥ 75 mm) en las bisagras y en el cerradero del marco, hasta la obra y no solo la madera. Es lo más barato y lo que más resistencia añade a una patada.</li>
+    <li>Escudo protector en el bombín y bombín antibumping o antiganzúa.</li>
+    <li>Cerrojo interior adicional en la puerta principal y en la del sótano que comunica con el garaje.</li>
+    <li>Ventanas de planta calle: cierres de seguridad, y persianas con bloqueo anti-elevación.</li>
+    <li>Focos solares con sensor de movimiento en las entradas: funcionan sin red eléctrica.</li>
+    <li>Cuerda de seguridad o barra para puertas correderas de la terraza.</li>
+  </ul>
+  <h3>Tu alarma durante un apagón</h3>
+  <ul>
+    <li>La base de Ring Alarm tiene una batería interna de hasta unas 24 h. El teclado y los sensores van con su propia batería.</li>
+    <li>Sin internet ni red móvil, la alarma <b>no te avisará en el móvil</b>. El respaldo de datos móviles requiere suscripción y, de todos modos, la red móvil puede caer.</li>
+    <li>Una sirena local que suene en casa sigue disuadiendo.</li>
+    <li>Las cámaras que dependen de la corriente o del wifi dejan de grabar. Valora alimentarlas desde la estación de energía si la compras.</li>
+  </ul>
+  <h3>Comunidad</h3>
+  <ul>
+    <li>En tu residencial cerrado: un grupo de vecinos con canal PMR acordado, una lista de quién tiene necesidades (mayores, dependientes) y turnos de vigilancia si la situación se alarga.</li>
+    <li>Compartir información y recursos crea más seguridad que cualquier cerradura.</li>
+  </ul>
+  <div class="danger-box"><strong>Límites legales (España)</strong>
+    <ol>
+      <li>La legítima defensa exige una agresión ilegítima y un medio de defensa <b>proporcionado</b>. Defender bienes materiales no justifica cualquier respuesta.</li>
+      <li><b>Prohibidas las trampas</b> que puedan herir: son delito y pueden matar a un bombero, a un vecino o a un niño.</li>
+      <li>Ante un intruso: prioridad a la familia. Refugio en una habitación con cerrojo, luz, ruido y aviso al 1-1-2. Los objetos se recuperan; las personas no.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ B4-F04 ============ -->
+<section class="ficha" id="B4-F04">
+  <div class="ficha-header">
+    <span class="ficha-id">B4-F04</span>
+    <span class="ficha-title">Niños y personas a cargo</span>
+    <span class="ficha-time">CONTINUO</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: los niños leen la emoción de los adultos más que las palabras. Rutina, información sencilla y verdadera, y una tarea útil les protege más que esconderles lo que pasa.</div>
+  <h3>Antes (hoy)</h3>
+  <ul class="check">
+    <li>Que sepa su nombre completo, la dirección y un teléfono de memoria (según la edad).</li>
+    <li>Que sepa qué es el 1-1-2 y cuándo llamar.</li>
+    <li>Un simulacro al año en casa: dónde están las mochilas, punto de encuentro, qué hacer en un sismo.</li>
+    <li>Que conozca el punto de encuentro y el contacto de fuera de la isla.</li>
+  </ul>
+  <h3>Durante la crisis</h3>
+  <ul>
+    <li><b>Explicar</b> en frases cortas lo que pasa y lo que vamos a hacer. No prometer lo que no se sabe ("va a volver la luz mañana").</li>
+    <li><b>Rutina:</b> horarios de comida, sueño y algo de "cole" o juego a la misma hora cada día.</li>
+    <li><b>Tarea:</b> encargado de las linternas, de anotar las horas de radio o de contar el agua. Sentirse útil reduce el miedo.</li>
+    <li><b>Limitar</b> la exposición a noticias e imágenes duras.</li>
+    <li>Normal durante días: más apego, miedo a dormir solo, rabietas, volver a conductas de cuando era más pequeño. Paciencia.</li>
+    <li>Buscar ayuda profesional cuando sea posible si dura semanas o empeora (no come, no duerme, revive el suceso constantemente).</li>
+  </ul>
+  <h3>Mayores, dependientes y movilidad reducida</h3>
+  <ul class="check">
+    <li>Lista de su medicación, su médico y sus necesidades (oxígeno, aparatos eléctricos, dieta) en la Hoja familiar.</li>
+    <li>Quién se encarga de ir a por ellos en caso de evacuación, y cómo (silla, ayudas técnicas, vehículo adaptado).</li>
+    <li>Equipos médicos con batería: autonomía conocida y cargador alternativo.</li>
+    <li>Si dependen de equipos eléctricos vitales, comunicarlo de antemano a su centro de salud y a la compañía eléctrica.</li>
+  </ul>
+  <div class="danger-box"><strong>Adultos también</strong> Cuidar del cuidador: turnos de descanso, comer y dormir. Un adulto agotado toma malas decisiones.</div>
+</section>
+
+<!-- ============ B4-F05 ============ -->
+<section class="ficha" id="B4-F05">
+  <div class="ficha-header">
+    <span class="ficha-id">B4-F05</span>
+    <span class="ficha-title">Mantenimiento del plan</span>
+    <span class="ficha-time">CALENDARIO</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: un plan que no se revisa caduca como la comida. Pon fechas fijas en el calendario y cúmplelas.</div>
+  <h3>Cada mes</h3>
+  <ul class="check">
+    <li>Consumir y reponer algo de la despensa (rotación).</li>
+    <li>Cargar powerbanks y probar linternas y radio.</li>
+  </ul>
+  <h3>Cada 6 meses (cambio de hora: marzo y octubre)</h3>
+  <ul class="check">
+    <li>Revisar mochilas: agua, comida, medicación, pilas y tallas de ropa.</li>
+    <li>Revisar botiquín y caducidades.</li>
+    <li>Probar la estación de energía (si la hay): cargar al 60-80 %.</li>
+    <li>Comprobar extintor (manómetro en verde) y detector de CO.</li>
+  </ul>
+  <h3>Cada año</h3>
+  <ul class="check">
+    <li>Limpiar y desinfectar el depósito del sótano.</li>
+    <li>Rotar el agua embotellada.</li>
+    <li>Repasar frecuencias FM y la Hoja familiar (teléfonos, colegio, medicación).</li>
+    <li>Simulacro familiar: apagón de 24 h en casa sin red, con el manual en la mano.</li>
+    <li>Revisar el calendario vacunal (tétanos).</li>
+    <li>Revisar este manual: cambios normativos, nuevos equipos y lo aprendido en el simulacro.</li>
+  </ul>
+  <h3>Al actualizar el manual en GitHub</h3>
+  <ul><li>Subir el número de versión en <code>sw.js</code> para que el móvil descargue la versión nueva, y volver a imprimir las fichas cambiadas.</li></ul>
+</section>
+
+<!-- =================================================== -->
+<!-- ===================== BLOQUE 5 ===================== -->
+<!-- =================================================== -->
+<div class="bloque" id="BLOQUE5">
+  <h2>Bloque 5 · Salud familiar</h2>
+  <p>Para quien esté en casa cuando no estéis vosotros.</p>
+</div>
+
+<!-- ============ B5-F01 ============ -->
+<section class="ficha" id="B5-F01">
+  <div class="ficha-header">
+    <span class="ficha-id">B5-F01</span>
+    <span class="ficha-title">Primeros auxilios esenciales</span>
+    <span class="ficha-time">SEGUNDOS</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: Proteger, Avisar, Socorrer. Si no responde y no respira con normalidad: llamar al 1-1-2, comprimir el centro del pecho fuerte y rápido, y pedir un DESA.</div>
+  <h3>No responde y no respira normal (RCP)</h3>
+  <div class="tw"><table>
+    <tr><th></th><th>Adulto</th><th>Niño (1 año a pubertad)</th><th>Lactante (&lt; 1 año)</th></tr>
+    <tr><td>Empezar</td><td>30 compresiones</td><td>5 insuflaciones, luego 15 compresiones</td><td>5 insuflaciones (boca a boca-nariz), luego 15 compresiones</td></tr>
+    <tr><td>Dónde y cómo</td><td>Centro del pecho, dos manos, 5-6 cm</td><td>Mitad inferior del esternón, una o dos manos, ⅓ del pecho</td><td>Dos dedos o dos pulgares, ⅓ del pecho</td></tr>
+    <tr><td>Ritmo</td><td colspan="3">100-120 por minuto. 30:2 si no sabes la pauta pediátrica: mejor algo que nada.</td></tr>
+    <tr><td>DESA</td><td colspan="3">Encenderlo en cuanto llegue y seguir lo que dice. Parches pediátricos si los hay; si no, los de adulto (uno delante y otro en la espalda en niños pequeños).</td></tr>
+  </table></div>
+  <h3>Atragantamiento</h3>
+  <ul>
+    <li><b>Tose con fuerza:</b> animarle a seguir tosiendo. No golpear.</li>
+    <li><b>No puede toser ni hablar:</b> 5 golpes entre los omóplatos y después 5 compresiones abdominales (Heimlich). Alternar hasta que salga.</li>
+    <li><b>Lactante:</b> boca abajo sobre el antebrazo, 5 golpes en la espalda; después boca arriba, 5 compresiones en el pecho con dos dedos. Nunca compresiones abdominales.</li>
+    <li>Si queda inconsciente: RCP.</li>
+  </ul>
+  <h3>Reacción alérgica grave (anafilaxia)</h3>
+  <ul>
+    <li>Signos: hinchazón de labios o lengua, dificultad para respirar, ronquera, mareo o desmayo tras un alimento, picadura o medicamento.</li>
+    <li><b>Autoinyector de adrenalina en la cara externa del muslo</b>, incluso a través de la ropa. Aguantar 10 segundos.</li>
+    <li>Tumbar con las piernas elevadas, o sentado si le cuesta respirar. Si no mejora en 5-10 minutos y hay un segundo autoinyector, ponerlo.</li>
+  </ul>
+  <h3>Otras</h3>
+  <ul>
+    <li><b>Inconsciente que respira:</b> posición lateral de seguridad y vigilar la respiración.</li>
+    <li><b>Convulsión:</b> apartar objetos y proteger la cabeza. No meter nada en la boca. Mirar la hora. Si dura más de 5 minutos o se repite, es una emergencia.</li>
+    <li><b>Hemorragia:</b> presión directa fuerte durante 10 minutos (B2-F03).</li>
+    <li><b>Quemadura:</b> agua a temperatura ambiente 20 minutos (B2-F03).</li>
+  </ul>
+  <div class="danger-box"><strong>Preparación</strong> Enseñad a vuestra hija, según su edad, a llamar al 1-1-2, decir la dirección y comprimir el pecho. Un curso de RCP para niños y adolescentes y un simulacro en casa valen más que esta ficha.</div>
+</section>
+
+<!-- ============ B5-F02 ============ -->
+<section class="ficha" id="B5-F02">
+  <div class="ficha-header">
+    <span class="ficha-id">B5-F02</span>
+    <span class="ficha-title">Enfermo contagioso en casa</span>
+    <span class="ficha-time">DÍAS</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: una habitación, un cuidador, mucho aire. Separar al enfermo y ventilar protege más que cualquier desinfectante.</div>
+  <h3>Aislamiento</h3>
+  <ul>
+    <li>Habitación con ventana y puerta cerrada. Si es posible, baño propio. Si no, desinfectar el baño tras cada uso (lejía al 0,1 %: 20 ml por litro).</li>
+    <li>Un solo cuidador, sin factores de riesgo. Mascarilla FFP2 del cuidador al entrar, quirúrgica al enfermo si la tolera.</li>
+    <li>Lavado de manos al entrar y al salir. Guantes para fluidos.</li>
+    <li>Ventilar la habitación 10-15 minutos varias veces al día, con la puerta cerrada.</li>
+  </ul>
+  <h3>Residuos, ropa y menaje</h3>
+  <ul>
+    <li>Residuos en doble bolsa cerrada, en la basura general salvo indicación oficial.</li>
+    <li>Ropa y sábanas a 60 °C o más. Sin sacudirlas.</li>
+    <li>Platos y cubiertos con agua caliente y jabón. No compartir.</li>
+  </ul>
+  <h3>Cuidados</h3>
+  <ul>
+    <li>Hidratación: suero oral si hay diarrea o vómitos (B2-F02).</li>
+    <li>Control de temperatura y de la frecuencia respiratoria, anotado dos veces al día.</li>
+    <li>Contactos del hogar: vigilar síntomas durante el periodo de incubación que digan las autoridades.</li>
+  </ul>
+  <div class="danger-box"><strong>Buscar asistencia</strong> Dificultad para respirar, saturación &lt; 92 %, confusión, no orina en 12 h, labios azulados o, en niños, decaimiento marcado o rechazo total de líquidos.</div>
+</section>
+
+<!-- ============ B5-F03 ============ -->
+<section class="ficha" id="B5-F03">
+  <div class="ficha-header">
+    <span class="ficha-id">B5-F03</span>
+    <span class="ficha-title">Nube tóxica y gases (accidente químico o volcánico)</span>
+    <span class="ficha-time">MINUTOS</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: ante una fuga química, normalmente no se huye: <b>se entra, se cierra y se sube</b>. La mayoría de gases tóxicos pesan más que el aire y se acumulan abajo. Nunca refugiarse en el sótano ni en el garaje.</div>
+  <h3>Confinamiento</h3>
+  <ol>
+    <li>Entrar en casa inmediatamente. Si vas en coche: ventanillas cerradas, ventilación apagada y en recirculación.</li>
+    <li>Cerrar puertas y ventanas. Apagar el aire acondicionado y los extractores.</li>
+    <li>Ir a una habitación <b>interior de la planta superior</b>, con pocas ventanas.</li>
+    <li>Sellar rendijas con cinta y plástico, o con toallas mojadas en la puerta.</li>
+    <li>Radio y ES-Alert. No salir hasta que lo indiquen las autoridades, y entonces ventilar a fondo.</li>
+  </ol>
+  <h3>Si has estado expuesto</h3>
+  <ul>
+    <li>Quitarse la ropa (elimina la mayor parte de la contaminación), meterla en una bolsa cerrada y ducharse con agua y jabón.</li>
+    <li>Ojos: lavado con agua abundante 15 minutos.</li>
+  </ul>
+  <h3>Gases volcánicos</h3>
+  <ul>
+    <li>El CO₂ volcánico se acumula en sótanos, garajes, pozos y zonas bajas, sin olor. Si hay aviso por gases, <b>no bajes al sótano</b>.</li>
+    <li>Señales: dolor de cabeza, mareo o falta de aire al entrar en una zona baja. Salir inmediatamente hacia arriba y al aire libre.</li>
+    <li>El rescate de otra persona en una zona de gas sin protección respiratoria produce dos víctimas.</li>
+  </ul>
+</section>
+
+<!-- =================================================== -->
+<!-- ===================== BLOQUE 6 ===================== -->
+<!-- =================================================== -->
+<div class="bloque" id="BLOQUE6">
+  <h2>Bloque 6 · Atención avanzada con recursos limitados</h2>
+  <p>Uso exclusivo de profesionales sanitarios formados en emergencias. Escenario: sin sistema de emergencias disponible durante horas o días. Las dosis son de referencia; verificar en ficha técnica y ajustar al paciente.</p>
+</div>
+
+<!-- ============ B6-F01 ============ -->
+<section class="ficha pro" id="B6-F01">
+  <div class="ficha-header">
+    <span class="ficha-id">B6-F01</span>
+    <span class="ficha-title">Principios de atención prolongada</span>
+    <span class="ficha-time">HORAS - DÍAS</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: el cambio mental clave es pasar de "estabilizar y trasladar" a "mantener vivo y sin complicaciones durante horas o días". Monitorizar tendencias, anticipar el deterioro y cuidar lo básico (temperatura, dolor, hidratación, presión en la piel, diuresis).</div>
+  <h3>Secuencia</h3>
+  <ol>
+    <li><b>MARCH</b> (hemorragia masiva, vía aérea, respiración, circulación, hipotermia y cabeza). Ficha B6-F02.</li>
+    <li><b>Reevaluación seriada</b> en la Hoja de seguimiento: cada 15 minutos la primera hora, y después cada 1-4 h según la estabilidad.</li>
+    <li><b>PAWS</b> (cuidados prolongados):
+      <ul>
+        <li><b>P</b>ain: analgesia escalonada (B6-F07).</li>
+        <li><b>A</b>ntibióticos: en heridas abiertas, fracturas abiertas, mordeduras y quemaduras infectadas (B6-F06).</li>
+        <li><b>W</b>ounds: cura, irrigación, cierre diferido.</li>
+        <li><b>S</b>plinting: inmovilización y alineación (B6-F05).</li>
+      </ul>
+    </li>
+    <li><b>Cuidados de enfermería:</b> cambios posturales cada 2 h, protección de prominencias, higiene oral, control de diuresis (objetivo ≥ 0,5 ml/kg/h en adultos y ≥ 1 ml/kg/h en niños) e ingesta oral si es segura.</li>
+    <li><b>Comunicación:</b> intentar contacto con la CCUS o con un médico por cualquier vía (PMR, radioaficionado, mensajería) con un resumen SBAR y constantes.</li>
+  </ol>
+  <h3>Hipotermia: siempre</h3>
+  <ul>
+    <li>Aislar del suelo, retirar ropa mojada, envolver con manta térmica más mantas y cubrir la cabeza.</li>
+    <li>Fuentes de calor externas en el tronco, nunca en contacto directo con la piel. Líquidos templados si es posible.</li>
+    <li>La hipotermia empeora la coagulopatía y la mortalidad del trauma.</li>
+  </ul>
+  <h3>Criterios de evacuación prioritaria (si existe cualquier vía)</h3>
+  <ul>
+    <li>Shock que no responde, deterioro neurológico, abdomen agudo o traumático, quemado &gt; 20 % de superficie corporal o en vía aérea, isquemia de un miembro, sepsis.</li>
+    <li>Paciente que necesita cirugía o transfusión: aquí solo se gana tiempo.</li>
+  </ul>
+</section>
+
+<!-- ============ B6-F02 ============ -->
+<section class="ficha pro" id="B6-F02">
+  <div class="ficha-header">
+    <span class="ficha-id">B6-F02</span>
+    <span class="ficha-title">MARCH con material limitado</span>
+    <span class="ficha-time">MINUTOS</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: la hemorragia exanguinante mata antes que la vía aérea. Primero torniquete o taponamiento; después vía aérea.</div>
+  <div class="tw"><table>
+    <tr><th>Fase</th><th>Actuación</th><th>Improvisación</th></tr>
+    <tr><td><b>M</b> · Hemorragia masiva</td><td>Torniquete alto y apretado ("alto y apretado" si no se ve el origen), anotar la hora. Taponamiento de heridas de unión con gasa hemostática y 3 minutos de presión. Vendaje compresivo.</td><td>Torniquete: tela de 4-5 cm de ancho y una barra rígida como molinete, nunca cordón ni cable. Taponamiento con gasa o tela limpia. Reevaluar el torniquete; si a las 2 h hay control alternativo eficaz y el paciente está estable, plantear conversión.</td></tr>
+    <tr><td><b>A</b> · Vía aérea</td><td>Posición lateral o de seguridad, tracción mandibular y cánula nasofaríngea (talla: punta de la nariz al trago; contraindicada si hay sospecha de fractura de base de cráneo). Aspiración.</td><td>Aspirador manual o jeringa de 60 ml con sonda. Paciente consciente que protege su vía aérea: dejarle adoptar la posición que quiera.</td></tr>
+    <tr><td><b>R</b> · Respiración</td><td>Herida torácica abierta: sello ventilado. Sospecha de neumotórax a tensión (trauma torácico, dificultad respiratoria progresiva, hipotensión): descompresión con aguja en el 5.º espacio intercostal en la línea axilar anterior, o en el 2.º espacio en la línea medioclavicular; catéter de 10-14 G y 8 cm, perpendicular, hasta el conector. Máximo 2 intentos.</td><td>Sello: plástico o envoltorio estéril pegado por 3 lados. Si empeora tras el sellado, levantar el sello ("burping").</td></tr>
+    <tr><td><b>C</b> · Circulación</td><td>Signos de shock: pulso radial débil o ausente, alteración mental, relleno capilar &gt; 2 s. Reanimación hipotensiva (B6-F03).</td><td>Sin acceso venoso: vía oral si está consciente y sin lesión abdominal, o subcutánea para la deshidratación (no en el shock).</td></tr>
+    <tr><td><b>H</b> · Hipotermia y cabeza</td><td>Prevenir la hipotermia desde el minuto 1. En el TCE, evitar la hipoxia y la hipotensión (B6-F04).</td><td>Manta térmica más mantas por fuera, aislamiento del suelo.</td></tr>
+  </table></div>
+  <div class="danger-box"><strong>Límites</strong>
+    <ol>
+      <li>La descompresión con aguja y los procedimientos invasivos de vía aérea solo si tenéis formación y material específicos.</li>
+      <li>Sin cirugía, el sangrado no compresible (torácico, abdominal, pélvico) solo se gestiona con hipotensión permisiva, calor y evacuación urgente.</li>
+      <li>Fractura de pelvis sospechada: cinturón pélvico a la altura de los trocánteres (improvisado con una sábana y un nudo o un molinete). No movilizar la pelvis para explorarla.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ B6-F03 ============ -->
+<section class="ficha pro" id="B6-F03">
+  <div class="ficha-header">
+    <span class="ficha-id">B6-F03</span>
+    <span class="ficha-title">Shock, fluidos y rehidratación sin hospital</span>
+    <span class="ficha-time">HORAS</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: el objetivo en la hemorragia no es normalizar la tensión, sino perfundir sin hacer resangrar. La diuresis es tu mejor monitor de perfusión cuando no hay laboratorio.</div>
+  <h3>Objetivos hemodinámicos (adulto)</h3>
+  <div class="tw"><table>
+    <tr><th>Situación</th><th>Objetivo</th></tr>
+    <tr><td>Hemorragia no controlada</td><td>Tensión sistólica 80-90 mmHg, pulso radial palpable y consciente.</td></tr>
+    <tr><td>Hemorragia con TCE</td><td>Tensión sistólica ≥ 110 mmHg.</td></tr>
+    <tr><td>Hemorragia controlada, deshidratación, sepsis</td><td>Normalizar: tensión arterial media ≥ 65 mmHg, diuresis ≥ 0,5 ml/kg/h, mejoría mental.</td></tr>
+  </table></div>
+  <h3>Vías</h3>
+  <ul>
+    <li><b>IV o intraósea</b> (si tenéis material y suero): bolos de 250 ml de cristaloide en hemorragia, reevaluando tras cada uno. Ácido tranexámico 1 g IV en 10 minutos si han pasado menos de 3 h desde el trauma, y 1 g más en 8 h.</li>
+    <li><b>Oral:</b> consciente, sin lesión abdominal, sin vómitos incoercibles. Suero oral a sorbos frecuentes (B2-F02).</li>
+    <li><b>Subcutánea (hipodermoclisis):</b> deshidratación leve-moderada sin shock. Suero fisiológico 0,9 % por palomilla de 21-25 G en el abdomen, la cara anterior del muslo o la zona subclavicular. 20-125 ml/h, hasta ≈ 1.500 ml por punto en 24 h (máximo ≈ 3 L/día en dos puntos).</li>
+  </ul>
+  <h3>Quemaduras</h3>
+  <ul>
+    <li>Superficie quemada por la regla de los 9 (palma más dedos del paciente ≈ 1 %). No contar el primer grado.</li>
+    <li><b>IV:</b> de 2 a 4 ml/kg × % de superficie en 24 h (empezar por 2 ml en adultos y 3 en niños); la mitad en las primeras 8 h. Titular por diuresis: 0,5 ml/kg/h en adultos y 1 ml/kg/h en niños de menos de 30 kg.</li>
+    <li><b>Oral, sin vía IV:</b> la literatura de atención prolongada la considera factible para quemaduras del 15-40 %. Suero oral a sorbos frecuentes y continuos (hasta 1-2 L/h en adultos con quemaduras extensas), guiado por diuresis y tolerancia. Si vomita, pausa de unos minutos y reanudar.</li>
+    <li>Quemadura circunferencial de tórax o de un miembro con compromiso: escarotomía. Fuera de vuestro ámbito salvo extrema necesidad; prioridad de evacuación.</li>
+  </ul>
+  <h3>Aplastamiento prolongado (rabdomiólisis y síndrome de aplastamiento)</h3>
+  <ul>
+    <li>Si es posible, hidratar <b>antes</b> de liberar: IV 1-1,5 L/h. Después, objetivo de diuresis de 200-300 ml/h en adultos.</li>
+    <li><b>Oral sin vía IV:</b> agua con sal y bicarbonato (1 L de agua, ½ cucharadita de sal y ½ de bicarbonato, y azúcar al gusto). <b>Evitar soluciones con potasio</b> (el suero oral OMS lleva potasio) por el riesgo de hiperpotasemia.</li>
+    <li>Prohibidos los AINE. Vigilar arritmias, orina oscura y oliguria.</li>
+  </ul>
+  <h3>Deshidratación pediátrica (diarrea) · OMS</h3>
+  <ul>
+    <li><b>Moderada (plan B):</b> 75 ml/kg de suero oral en 4 h, y después reevaluar.</li>
+    <li><b>Grave</b> (letargia, no bebe, relleno capilar muy lento): requiere vía IV. Prioridad de evacuación.</li>
+  </ul>
+</section>
+
+<!-- ============ B6-F04 ============ -->
+<section class="ficha pro" id="B6-F04">
+  <div class="ficha-header">
+    <span class="ficha-id">B6-F04</span>
+    <span class="ficha-title">TCE y deterioro neurológico</span>
+    <span class="ficha-time">HORAS</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: sin TAC, el TCE se gestiona evitando la lesión secundaria (hipoxia, hipotensión, hipertermia, hipoglucemia) y detectando a tiempo el deterioro. La Glasgow seriada es tu TAC.</div>
+  <ul>
+    <li><b>Monitorización:</b> Glasgow, pupilas, constantes y glucemia cada 15 minutos la primera hora, cada 30 minutos hasta las 4 h y después cada 1-2 h durante 24 h. Anotar en la Hoja.</li>
+    <li><b>Posición:</b> cabecero a 30°, cuello alineado sin collarín apretado (dificulta el retorno venoso).</li>
+    <li><b>Objetivos:</b> SpO₂ ≥ 94 %, tensión sistólica ≥ 110 mmHg, normotermia y normoglucemia.</li>
+    <li><b>Despertarle</b> para valorar, y no dejarle solo las primeras 24 h.</li>
+  </ul>
+  <h3>Señales de alarma</h3>
+  <ul>
+    <li>Descenso de la Glasgow de 2 puntos o más, anisocoria nueva, vómitos repetidos, crisis convulsiva, cefalea creciente, focalidad o confusión progresiva.</li>
+    <li>Signos de herniación (bradicardia, hipertensión, respiración irregular): evacuación inmediata por cualquier vía. Sin neurocirugía, el pronóstico es muy malo; documentarlo.</li>
+    <li><b>Riesgo aumentado:</b> anticoagulados o antiagregados, mayores de 65 años, intoxicación, mecanismo de alta energía.</li>
+  </ul>
+  <h3>Columna</h3>
+  <ul>
+    <li>Restricción selectiva del movimiento. Alineación y traslado en bloque si hay focalidad, dolor en la línea media o mecanismo de riesgo con Glasgow alterada.</li>
+    <li>Evitar los collarines y las tablas prolongadas, que causan úlceras por presión, dificultad respiratoria y aumento de la presión intracraneal.</li>
+  </ul>
+</section>
+
+<!-- ============ B6-F05 ============ -->
+<section class="ficha pro" id="B6-F05">
+  <div class="ficha-header">
+    <span class="ficha-id">B6-F05</span>
+    <span class="ficha-title">Fracturas, luxaciones y síndrome compartimental</span>
+    <span class="ficha-time">MINUTOS - HORAS</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: sin pulso distal, el miembro tiene horas. Alinear con tracción suave hasta posición anatómica para recuperar la perfusión vale más que inmovilizar "como se encontró".</div>
+  <h3>Fracturas</h3>
+  <ul>
+    <li>Explorar pulso, relleno, sensibilidad y motilidad distal <b>antes y después</b> de cada maniobra, y anotarlo.</li>
+    <li>Fractura de hueso largo angulada con compromiso vascular: tracción longitudinal suave y alineación. Detenerse si hay dolor extremo o resistencia.</li>
+    <li><b>Fractura abierta:</b> irrigar abundantemente, cubrir con apósito húmedo estéril, alinear sin introducir el hueso de forma activa, antibiótico (B6-F06) y estado vacunal antitetánico.</li>
+    <li><b>Fémur:</b> tracción improvisada (bastón o palos, con anclaje en el tobillo e isquion), que reduce dolor y sangrado.</li>
+    <li>Férulas: maleables, cartón, revistas o almohadas. Inmovilizar la articulación de arriba y la de abajo. Elevar y aplicar frío.</li>
+  </ul>
+  <h3>Luxaciones razonables de reducir sin hospital</h3>
+  <div class="tw"><table>
+    <tr><th>Articulación</th><th>Técnica</th></tr>
+    <tr><td>Hombro anterior</td><td>Rotación externa lenta con el codo pegado al cuerpo, Cunningham (masaje del bíceps y trapecio, paciente sentado y relajado) o FARES. Inmovilizar con cabestrillo.</td></tr>
+    <tr><td>Rótula lateral</td><td>Extensión lenta de la rodilla mientras se empuja la rótula hacia medial.</td></tr>
+    <tr><td>Interfalángica</td><td>Tracción longitudinal y leve hiperextensión. Sindactilia con el dedo vecino.</td></tr>
+    <tr><td>Codo, cadera, tobillo con fractura</td><td>Solo con compromiso neurovascular y evacuación imposible. Riesgo alto.</td></tr>
+  </table></div>
+  <h3>Síndrome compartimental</h3>
+  <ul>
+    <li>Dolor desproporcionado y dolor al <b>estiramiento pasivo</b> son los signos precoces. La palidez y la ausencia de pulso son tardías.</li>
+    <li>Actuación: retirar vendajes y férulas apretados, colocar el miembro a la altura del corazón (no elevado) y evacuar con prioridad. La fasciotomía queda fuera de este manual.</li>
+  </ul>
+</section>
+
+<!-- ============ B6-F06 ============ -->
+<section class="ficha pro" id="B6-F06">
+  <div class="ficha-header">
+    <span class="ficha-id">B6-F06</span>
+    <span class="ficha-title">Infección y sepsis sin hospital</span>
+    <span class="ficha-time">HORAS - DÍAS</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: controlar el foco (drenar, desbridar, retirar el cuerpo extraño) es tan importante como el antibiótico. Y el antibiótico precoz salva vidas en la sepsis.</div>
+  <h3>Reconocer la sepsis</h3>
+  <ul>
+    <li><b>qSOFA</b> ≥ 2: frecuencia respiratoria ≥ 22, alteración mental, tensión sistólica ≤ 100. Junto con sospecha de foco infeccioso.</li>
+    <li>Sin laboratorio, también: piel moteada, relleno capilar &gt; 3 s, oliguria, fiebre o hipotermia, y en niños taquicardia y decaimiento.</li>
+  </ul>
+  <h3>Actuación</h3>
+  <ol>
+    <li>Antibiótico empírico lo antes posible, según el foco (B6-F07).</li>
+    <li>Hidratación oral, SC o IV, guiada por la diuresis.</li>
+    <li><b>Control del foco:</b> drenar abscesos (incisión, desbridamiento, mecha de gasa y curas diarias), retirar puntos de una herida infectada y abrirla.</li>
+    <li>Antitérmico y control de constantes en la Hoja. Prioridad de evacuación.</li>
+  </ol>
+  <h3>Heridas de riesgo</h3>
+  <ul>
+    <li><b>Mordedura</b> (humana, perro o gato): irrigación abundante, no cerrar (salvo en la cara) y profilaxis antibiótica. Comprobar la vacunación antitetánica.</li>
+    <li><b>Herida contaminada con tierra o estiércol:</b> riesgo de tétanos; inmunoglobulina antitetánica si no está vacunado o la vacunación es incierta (requiere centro sanitario).</li>
+  </ul>
+</section>
+
+<!-- ============ B6-F07 ============ -->
+<section class="ficha pro" id="B6-F07">
+  <div class="ficha-header">
+    <span class="ficha-id">B6-F07</span>
+    <span class="ficha-title">Farmacología de referencia</span>
+    <span class="ficha-time">CONSULTA</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: dosis de referencia para adultos y niños. Verificar siempre en ficha técnica, alergias, peso, función renal y hepática, e interacciones. Los medicamentos sujetos a prescripción requieren receta o indicación enfermera según la normativa vigente.</div>
+  <h3>Analgesia y antiinflamatorios</h3>
+  <div class="tw"><table>
+    <tr><th>Fármaco</th><th>Adulto</th><th>Niño</th><th>Precaución</th></tr>
+    <tr><td>Paracetamol VO</td><td>1 g/6-8 h (máx. 4 g/día; 3 g si hepatopatía, alcohol o bajo peso)</td><td>15 mg/kg/6 h (máx. 60-75 mg/kg/día)</td><td>Hepatotoxicidad.</td></tr>
+    <tr><td>Ibuprofeno VO</td><td>400-600 mg/8 h (máx. 2,4 g/día)</td><td>10 mg/kg/8 h (desde los 3 meses)</td><td><b>No</b> en hemorragia activa, aplastamiento, deshidratación ni insuficiencia renal.</td></tr>
+    <tr><td>Metamizol VO</td><td>575 mg/6-8 h</td><td>Según ficha técnica</td><td>Agranulocitosis (rara). Hipotensión si es IV.</td></tr>
+  </table></div>
+  <h3>Urgencias</h3>
+  <div class="tw"><table>
+    <tr><th>Fármaco</th><th>Adulto</th><th>Niño</th><th>Notas</th></tr>
+    <tr><td>Adrenalina IM (1 mg/ml) · anafilaxia</td><td>0,5 mg</td><td>0,01 mg/kg (máx. 0,5 mg). Autoinyector de 0,15 mg (15-30 kg) o 0,3 mg (&gt; 30 kg)</td><td>Cara anterolateral del muslo. Repetir cada 5 minutos si no hay respuesta.</td></tr>
+    <tr><td>Salbutamol inhalado con cámara</td><td>4-10 pulsaciones cada 20 min, 3 veces</td><td>2-10 pulsaciones cada 20 min, 3 veces</td><td>Asma o broncoespasmo; también en anafilaxia con broncoespasmo.</td></tr>
+    <tr><td>Prednisona VO</td><td>40-50 mg/día, 5 días</td><td>1-2 mg/kg/día (máx. 40 mg), 3-5 días</td><td>Asma o EPOC agudizada.</td></tr>
+    <tr><td>Dexametasona VO · crup</td><td>—</td><td>0,15-0,6 mg/kg, dosis única (máx. 10 mg)</td><td>Laringitis infantil.</td></tr>
+    <tr><td>Glucosa oral · hipoglucemia</td><td>15-20 g</td><td>0,3 g/kg</td><td>Repetir a los 15 minutos si glucemia &lt; 70 mg/dl.</td></tr>
+    <tr><td>Glucagón · hipoglucemia sin vía oral</td><td>1 mg IM/SC (o 3 mg intranasal)</td><td>0,5 mg si &lt; 25 kg</td><td>Poca eficacia si hay depleción de glucógeno (alcohol, ayuno).</td></tr>
+    <tr><td>Ondansetrón VO o bucodispersable</td><td>4-8 mg/8 h</td><td>0,15 mg/kg (máx. 4 mg)</td><td>QT largo.</td></tr>
+    <tr><td>Cetirizina VO</td><td>10 mg/24 h</td><td>2-6 años: 2,5 mg/12 h · &gt; 6 años: 5 mg/12 h</td><td>No sustituye a la adrenalina en la anafilaxia.</td></tr>
+    <tr><td>Loperamida VO</td><td>4 mg y después 2 mg tras cada deposición (máx. 16 mg/día)</td><td>No usar en niños pequeños</td><td>No si hay fiebre o sangre en las heces.</td></tr>
+    <tr><td>Lidocaína 1 % local</td><td>Máx. 4,5 mg/kg (7 mg/kg con adrenalina)</td><td>Igual, en mg/kg</td><td>1 % = 10 mg/ml.</td></tr>
+  </table></div>
+  <h3>Antibióticos empíricos (cursos de 5-7 días salvo indicación)</h3>
+  <div class="tw"><table>
+    <tr><th>Foco</th><th>Adulto</th><th>Niño</th><th>Alergia a betalactámicos</th></tr>
+    <tr><td>Piel, celulitis, herida infectada</td><td>Cefalexina 500 mg/6 h, o amoxicilina-clavulánico 875/125 mg/8 h</td><td>Cefalexina 25-50 mg/kg/día en 4 dosis</td><td>Clindamicina 300-450 mg/6-8 h (niño: 20-30 mg/kg/día)</td></tr>
+    <tr><td>Mordedura, fractura abierta, herida sucia</td><td>Amoxicilina-clavulánico 875/125 mg/8 h</td><td>Amoxicilina-clavulánico 40-50 mg/kg/día (de amoxicilina) en 3 dosis</td><td>Clindamicina más ciprofloxacino 500 mg/12 h (adulto)</td></tr>
+    <tr><td>Cistitis no complicada (mujer)</td><td>Fosfomicina 3 g, dosis única</td><td>Según peso y ficha técnica</td><td>—</td></tr>
+    <tr><td>Diarrea con fiebre o sangre</td><td>Azitromicina 1 g, dosis única (o 500 mg/día, 3 días)</td><td>Azitromicina 10 mg/kg/día, 3 días</td><td>—</td></tr>
+  </table></div>
+  <small>Los antibióticos requieren prescripción. Lo correcto es acordar con vuestro médico un botiquín familiar de viaje o contingencia con receta. Las pautas empíricas deben adaptarse a las resistencias locales.</small>
+</section>
+
+<!-- ============ B6-F08 ============ -->
+<section class="ficha pro" id="B6-F08">
+  <div class="ficha-header">
+    <span class="ficha-id">B6-F08</span>
+    <span class="ficha-title">Material avanzado para casa</span>
+    <span class="ficha-time">PREPARACIÓN</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: material que sabéis usar, en cantidad para un paciente grave durante 72 h, ordenado por MARCH y revisado cada 6 meses. Nunca material retirado del trabajo.</div>
+  <h3>Hemorragia y tórax</h3>
+  <ul class="check">
+    <li>Torniquetes tipo CAT (3) y vendajes de compresión de emergencia (3).</li>
+    <li>Gasa hemostática (2) y gasa de taponamiento (4).</li>
+    <li>Sellos torácicos ventilados (2). Catéter de descompresión de 10-14 G y 8 cm (2), si tenéis formación.</li>
+    <li>Cinturón pélvico o sábana para improvisarlo.</li>
+  </ul>
+  <h3>Vía aérea y respiración</h3>
+  <ul class="check">
+    <li>Cánulas nasofaríngeas (tallas 6, 7 y 8, más pediátrica según la edad de vuestra hija) con lubricante.</li>
+    <li>Cánulas de Guedel por tallas. Ambú de adulto y pediátrico con mascarillas.</li>
+    <li>Aspirador manual.</li>
+  </ul>
+  <h3>Monitorización</h3>
+  <ul class="check">
+    <li>Fonendo, tensiómetro manual con manguitos de adulto y pediátrico, pulsioxímetro con pilas de repuesto.</li>
+    <li>Glucómetro con tiras y lancetas, termómetro y linterna de exploración.</li>
+    <li>DESA doméstico (opcional): valoradlo, dada la edad de los familiares cercanos.</li>
+  </ul>
+  <h3>Heridas y procedimientos</h3>
+  <ul class="check">
+    <li>Kit de sutura: portaagujas, pinzas, tijeras y suturas monofilamento de 3-0, 4-0 y 5-0.</li>
+    <li>Grapadora cutánea y quitagrapas, tiras de aproximación y adhesivo tisular.</li>
+    <li>Jeringas de 20-60 ml para irrigación, bisturíes, guantes estériles y paños.</li>
+    <li>Contenedor de objetos punzantes.</li>
+  </ul>
+  <h3>Fluidos (si los conseguís con prescripción)</h3>
+  <ul class="check">
+    <li>Catéteres IV de 18-22 G, palomillas de 21-25 G para vía subcutánea, sistemas de infusión, compresores y apósitos.</li>
+    <li>Suero fisiológico 0,9 % de 500 ml (4-6). Sobres de suero oral (20).</li>
+  </ul>
+  <h3>Inmovilización y temperatura</h3>
+  <ul class="check">
+    <li>Férulas maleables (2), vendas de crepé y cabestrillos.</li>
+    <li>Mantas térmicas (4) y una manta de lana.</li>
+  </ul>
+</section>
+
+<!-- ============ B6-F09 ============ -->
+<section class="ficha pro" id="B6-F09">
+  <div class="ficha-header">
+    <span class="ficha-id">B6-F09</span>
+    <span class="ficha-title">Múltiples víctimas en el barrio, fallecidos y marco legal</span>
+    <span class="ficha-time">SEGÚN CASO</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: con muchas víctimas y pocos recursos, el objetivo cambia del mejor resultado para cada paciente al mejor resultado para el mayor número. Triar rápido, actuar solo sobre lo salvable y reevaluar.</div>
+  <h3>Triaje (START adaptado)</h3>
+  <ul>
+    <li><b>Verde:</b> camina.</li>
+    <li><b>Negro:</b> no respira tras abrir la vía aérea.</li>
+    <li><b>Rojo:</b> frecuencia respiratoria &gt; 30, relleno capilar &gt; 2 s o pulso radial ausente, o no obedece órdenes.</li>
+    <li><b>Amarillo:</b> el resto.</li>
+    <li>Intervenciones salvadoras inmediatas durante el triaje: torniquete, apertura de la vía aérea, posición lateral de seguridad.</li>
+    <li>Reclutar a vecinos para presión directa, mantas y vigilancia. Marcar a cada víctima (cinta de color o nota) con la hora.</li>
+    <li>Categoría expectante (no salvable con los recursos disponibles): confort, analgesia y compañía. Es una decisión ética legítima en escasez; documentarla.</li>
+  </ul>
+  <h3>Fallecidos</h3>
+  <ul>
+    <li>Los cadáveres de víctimas de un desastre <b>no suelen causar epidemias</b>. No enterrar ni incinerar de forma apresurada.</li>
+    <li>Guantes. Identificación: foto de la cara, rasgos, objetos y lugar. Etiqueta, bolsa o sábana. Lugar fresco.</li>
+    <li>Comunicar a las autoridades. En España, la certificación de la defunción corresponde a un médico.</li>
+  </ul>
+  <h3>Marco legal (España)</h3>
+  <ul>
+    <li>El deber de socorro (art. 195 del Código Penal) obliga a auxiliar si no hay riesgo propio ni de terceros. Como profesionales, actuar dentro de vuestra competencia y formación.</li>
+    <li>Consentimiento verbal cuando sea posible. Documentar siempre: hora, hallazgos, intervenciones y evolución en la Hoja de seguimiento.</li>
+    <li>Retirar material o fármacos del trabajo para uso propio es delito, aunque sea "para una emergencia".</li>
+    <li>Cuidado del equipo: turnos de descanso, hidratación y una pausa breve tras los casos duros.</li>
+  </ul>
+</section>
+
+<!-- ============ B6-HOJA ============ -->
+<section class="ficha pro hs" id="B6-HOJA">
+  <div class="ficha-header">
+    <span class="ficha-id">B6-H</span>
+    <span class="ficha-title">Hoja de seguimiento de paciente (imprimir varias)</span>
+    <span class="ficha-time">REGISTRO</span>
+  </div>
+  <p>Paciente: <span class="rellenar" style="min-width:140px"></span> · Edad y peso: <span class="rellenar"></span> · Alergias: <span class="rellenar"></span></p>
+  <p>Mecanismo y hora: <span class="rellenar" style="min-width:200px"></span> · Torniquete (hora): <span class="rellenar"></span></p>
+  <div class="tw"><table>
+    <tr><th>Hora</th><th>FC</th><th>FR</th><th>TA</th><th>SpO₂</th><th>T.ª</th><th>GCS/AVPU</th><th>Pupilas</th><th>Dolor</th><th>Diuresis</th><th>Intervenciones / fármacos</th></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  </table></div>
+  <p>Ingesta acumulada: <span class="rellenar"></span> · Diuresis acumulada: <span class="rellenar"></span> · Comunicaciones (con quién y hora): <span class="rellenar" style="min-width:160px"></span></p>
+</section>
+
+<!-- =================================================== -->
+<!-- ===================== BLOQUE 7 ===================== -->
+<!-- =================================================== -->
+<div class="bloque" id="BLOQUE7">
+  <h2>Bloque 7 · Reparaciones prácticas</h2>
+  <p>Arreglos provisionales con herramienta doméstica para mantener la casa funcionando hasta que haya un profesional disponible.</p>
+</div>
+
+<!-- ============ B7-F01 ============ -->
+<section class="ficha" id="B7-F01">
+  <div class="ficha-header">
+    <span class="ficha-id">B7-F01</span>
+    <span class="ficha-title">Kit de herramientas y guía de adhesivos</span>
+    <span class="ficha-time">PREPARACIÓN</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: el 80 % de los arreglos de emergencia se hacen con cinta, bridas, masilla epoxi y un destornillador. Mejor pocas herramientas buenas, juntas en una caja y sabiendo dónde está cada una.</div>
+  <h3>Herramientas</h3>
+  <ul class="check">
+    <li>Destornilladores (plano, estrella y Torx) o un mango con puntas.</li>
+    <li>Alicates universales, de punta y pelacables.</li>
+    <li>Llave inglesa y llave grifa (para tuberías).</li>
+    <li>Martillo, cúter, sierra para metal y cinta métrica.</li>
+    <li>Taladro a batería con brocas, y juego de llaves Allen.</li>
+    <li>Comprobador de tensión o polímetro sencillo.</li>
+    <li>Sargento o pinza de presión, nivel y lápiz.</li>
+  </ul>
+  <h3>Materiales</h3>
+  <ul class="check">
+    <li>Cintas: americana, aislante, autofusionante, de teflón y butílica (para goteras).</li>
+    <li>Masilla epoxi en barra, pegamento epoxi bicomponente, cianoacrilato, pegamento de contacto y silicona.</li>
+    <li>Bridas variadas, alambre galvanizado y cuerda paracord.</li>
+    <li>Juntas de grifo surtidas, abrazaderas de tubería y latiguillo de repuesto.</li>
+    <li>Tornillería y tacos surtidos, palillos de madera y cola blanca.</li>
+    <li>Lona de 3 × 4 m, plástico grueso y listones.</li>
+    <li>Fusibles de coche surtidos y arrancador de batería portátil, cargado.</li>
+  </ul>
+  <h3>Qué pega qué</h3>
+  <div class="tw"><table>
+    <tr><th>Producto</th><th>Sirve para</th><th>No sirve para</th></tr>
+    <tr><td><b>Cianoacrilato</b> (instantáneo)</td><td>Piezas pequeñas y rígidas: cerámica, plástico duro, goma, metal.</td><td>Huecos, flexión, polietileno o polipropileno.</td></tr>
+    <tr><td><b>Epoxi bicomponente</b></td><td>Metal, madera, cerámica, piedra, plástico duro. Rellena huecos y es resistente.</td><td>Polietileno o polipropileno. Necesita entre 5 minutos y 24 h para curar.</td></tr>
+    <tr><td><b>Masilla epoxi en barra</b></td><td>Fugas en tuberías metálicas, agujeros y piezas rotas. Algunas curan bajo el agua.</td><td>Tuberías a presión mientras no esté curada.</td></tr>
+    <tr><td><b>Contacto</b> (neopreno)</td><td>Calzado, goma, cuero, laminados. Se aplica en las dos caras, se esperan 10 minutos y se presiona fuerte.</td><td>Piezas que no se puedan presionar.</td></tr>
+    <tr><td><b>Silicona</b></td><td>Sellar contra el agua: juntas, marcos, pasos de tubo.</td><td>Pegar con fuerza (no es estructural).</td></tr>
+    <tr><td><b>Cinta autofusionante</b></td><td>Mangueras, tubos y aislamiento de cables. Se estira al doble mientras se enrolla y se funde consigo misma.</td><td>Superficies grandes.</td></tr>
+    <tr><td><b>Cinta americana</b></td><td>Casi todo, de forma temporal.</td><td>Calor, humedad continua y peso a largo plazo.</td></tr>
+  </table></div>
+  <small><b>Polietileno y polipropileno</b> (bidones, garrafas, cubos, contenedores): casi ningún adhesivo agarra. Si un bidón de agua pierde, se cambia por otro. Un parche con cinta solo sirve como emergencia para agua no potable.</small>
+</section>
+
+<!-- ============ B7-F02 ============ -->
+<section class="ficha" id="B7-F02">
+  <div class="ficha-header">
+    <span class="ficha-id">B7-F02</span>
+    <span class="ficha-title">Agua y fontanería</span>
+    <span class="ficha-time">15 - 60 MIN</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: antes de tocar nada, cierra el agua: la llave del aparato si la hay; si no, la general. Con el agua escasa, un goteo continuo pierde varios litros al día de tu reserva.</div>
+  <h3>Fuga en una tubería</h3>
+  <ol>
+    <li>Cerrar el agua y secar la zona.</li>
+    <li><b>Provisional rápido:</b> cinta autofusionante estirada, empezando 5 cm antes de la fuga, solapando la mitad de cada vuelta y terminando 5 cm después. Tres capas.</li>
+    <li><b>Más sólido:</b> abrazadera de reparación de tubería encima de una goma, o masilla epoxi en barra amasada hasta que tenga un color uniforme, apretada alrededor de la fuga y dejada curar el tiempo que indique el fabricante.</li>
+    <li>Abrir poco a poco y vigilar.</li>
+  </ol>
+  <h3>Latiguillo o conexión que gotea</h3>
+  <ul>
+    <li>Apretar un cuarto de vuelta con la llave, sujetando la otra pieza con otra llave para no retorcer la tubería.</li>
+    <li>Si sigue: desmontar y cambiar la junta, o enrollar teflón en la rosca (5-6 vueltas en el sentido de enroscado).</li>
+    <li>Latiguillo hinchado o con la malla oxidada: cambiarlo antes de que reviente.</li>
+  </ul>
+  <h3>Cisterna</h3>
+  <ul>
+    <li><b>Pierde agua continuamente a la taza:</b> la junta de la válvula de descarga está sucia o gastada. Limpiarla. Si no se arregla, cerrar la llave de la cisterna y llenarla a mano solo cuando se use, que además ahorra agua.</li>
+    <li><b>No para de llenar:</b> bajar la boya (tornillo o clip de ajuste), o el flotador está roto o lleno de agua.</li>
+  </ul>
+  <h3>Atasco</h3>
+  <ol>
+    <li>Desatascador de ventosa, tapando el rebosadero con un trapo húmedo. 10-15 empujes secos.</li>
+    <li>Lavabo o fregadero: desmontar el sifón con un cubo debajo y limpiarlo.</li>
+    <li>Muelle desatascador para tramos más largos.</li>
+    <li>Agua muy caliente (no hirviendo en tuberías de PVC) con un chorro de lavavajillas, para grasa.</li>
+  </ol>
+  <h3>Grifo que gotea</h3>
+  <ul>
+    <li><b>Grifo de rosca:</b> cambiar la zapata o junta.</li>
+    <li><b>Monomando:</b> cambiar el cartucho. Llevar el viejo a la ferretería para comprar el mismo modelo.</li>
+  </ul>
+  <div class="danger-box"><strong>Peligros</strong>
+    <ol>
+      <li>Nunca mezcles desatascadores químicos entre sí ni con lejía. Si ya echaste uno, no desmontes el sifón sin guantes y gafas.</li>
+      <li>Con sospecha de retorno de aguas negras en el sótano (Ficha 05), no desatasques desagües bajos: tápalos.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ B7-F03 ============ -->
+<section class="ficha" id="B7-F03">
+  <div class="ficha-header">
+    <span class="ficha-id">B7-F03</span>
+    <span class="ficha-title">Electricidad doméstica segura y pequeños aparatos</span>
+    <span class="ficha-time">10 - 30 MIN</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: se trabaja sin tensión, siempre. Bajar el circuito, comprobar con el comprobador que no hay tensión y, solo entonces, tocar. Sin comprobador, no se toca la instalación fija.</div>
+  <h3>El diferencial salta (y no sabes por qué)</h3>
+  <ol>
+    <li>Bajar todos los magnetotérmicos.</li>
+    <li>Subir el diferencial.</li>
+    <li>Subir los magnetotérmicos uno a uno. El que lo hace saltar es el circuito con el problema.</li>
+    <li>En ese circuito, desenchufar todo y volver a subir. Ir enchufando aparatos uno a uno hasta encontrar al culpable.</li>
+    <li>Si salta sin nada enchufado, el fallo está en la instalación: dejar ese circuito bajado. Causa habitual en Canarias: humedad en enchufes exteriores o de la terraza.</li>
+  </ol>
+  <h3>Cable o clavija de un aparato</h3>
+  <ul>
+    <li>Cable pelado o clavija rota de un aparato: <b>desenchufar</b>, cortar el tramo dañado y montar una clavija nueva. Fase y neutro, cada uno en un borne; tierra (amarillo y verde) en el borne de tierra; y el cable sujeto por la brida de la clavija, no por los bornes.</li>
+    <li>Los empalmes en un cable de 230 V se hacen con regleta o conectores de palanca, dentro de una caja. Nunca solo retorcidos con cinta.</li>
+  </ul>
+  <h3>Corriente continua (12 V y USB)</h3>
+  <ul>
+    <li>Empalmes de bajo voltaje: retorcer, estañar si se puede, aislar con termorretráctil o con cinta autofusionante.</li>
+    <li><b>Polaridad:</b> rojo positivo y negro negativo. Invertirla quema equipos.</li>
+    <li>Cualquier batería de plomo o de litio con un fusible cerca del borne positivo. Un cortocircuito en una batería quema cables y provoca incendios.</li>
+  </ul>
+  <h3>Linternas, radios y mandos que no funcionan</h3>
+  <ul>
+    <li>Pilas nuevas, y contactos limpios con goma de borrar o lija fina. Si hay sulfato blanco, retirarlo con un bastoncillo con vinagre, secar bien y limpiar.</li>
+    <li>Guarda las pilas fuera de los aparatos que no uses: es la causa principal de que se estropeen.</li>
+  </ul>
+  <div class="danger-box"><strong>Límites</strong>
+    <ol>
+      <li>Cuadro eléctrico, cableado empotrado y acometida: solo un instalador autorizado.</li>
+      <li>Nunca el agua y la electricidad juntas: suelo mojado, manos mojadas o aparatos mojados, no.</li>
+      <li>Gas: <b>no se repara</b>. Solo se cambia el regulador de la bombona y se comprueban las fugas con agua jabonosa (si salen burbujas, hay fuga). Nunca con llama.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ B7-F04 ============ -->
+<section class="ficha" id="B7-F04">
+  <div class="ficha-header">
+    <span class="ficha-id">B7-F04</span>
+    <span class="ficha-title">Cristales rotos, goteras, puertas y cerraduras</span>
+    <span class="ficha-time">30 - 90 MIN</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: primero que no entre agua, viento ni nadie; lo bonito, después. Un plástico doble bien sujeto con listones vale más que un cristal mal puesto.</div>
+  <h3>Cristal roto</h3>
+  <ol>
+    <li>Guantes gruesos y gafas. Pegar cinta en cruz sobre el cristal agrietado para que no se desprendan trozos.</li>
+    <li>Retirar los fragmentos de arriba hacia abajo y envolverlos en cartón o papel de periódico para tirarlos.</li>
+    <li>Cubrir el hueco: plástico grueso en doble capa, policarbonato o madera fina, fijado con listones atornillados al marco o con cinta americana por todo el perímetro.</li>
+  </ol>
+  <h3>Gotera (azotea o tejado)</h3>
+  <ol>
+    <li><b>Dentro:</b> cubo bajo la gotera. Si el techo se abomba con agua, pinchar el centro con un destornillador sobre el cubo para que no ceda entero.</li>
+    <li><b>Fuera, sin lluvia:</b> limpiar los sumideros de la azotea, que es la causa más común. Buscar grietas en la impermeabilización, alrededor de los pasos de tubo y en los encuentros con los muros.</li>
+    <li><b>Parche provisional:</b> superficie limpia y seca, y cinta butílica o masilla bituminosa sobre la grieta, solapando 5 cm por cada lado.</li>
+    <li><b>Si va a llover y no hay parche:</b> lona por encima, lastrada con sacos o garrafas (no con piedras sueltas) y cayendo hacia el desagüe.</li>
+  </ol>
+  <h3>Puertas y ventanas</h3>
+  <ul>
+    <li><b>Tornillo que gira en falso en madera:</b> rellenar el agujero con palillos y cola blanca, cortarlos a ras y volver a atornillar. O poner un tornillo más largo.</li>
+    <li><b>Puerta que roza o no cierra:</b> apretar los tornillos de las bisagras. Si cede la de arriba, poner un tornillo largo hasta el marco de obra.</li>
+    <li><b>Cerradura dura:</b> grafito en polvo o lubricante seco de teflón (PTFE). No aceite, que atrae el polvo y la ceniza.</li>
+    <li><b>Persiana atascada:</b> no forzarla. Revisar si la cinta se ha salido de la polea dentro del cajón.</li>
+  </ul>
+</section>
+
+<!-- ============ B7-F05 ============ -->
+<section class="ficha" id="B7-F05">
+  <div class="ficha-header">
+    <span class="ficha-id">B7-F05</span>
+    <span class="ficha-title">Coche y bicicleta</span>
+    <span class="ficha-time">10 - 30 MIN</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: en una crisis el coche es transporte, cargador y refugio. Que arranque, que tenga ruedas sanas y combustible es parte del plan, no un extra.</div>
+  <h3>Batería descargada (con pinzas o arrancador)</h3>
+  <ol>
+    <li>Ambos coches apagados. Pinza <b>roja</b> en el positivo (+) de la batería descargada.</li>
+    <li>El otro extremo rojo, en el positivo (+) de la batería buena.</li>
+    <li>Pinza <b>negra</b> en el negativo (−) de la batería buena.</li>
+    <li>El otro extremo negro, en una <b>pieza metálica sin pintar del motor</b> del coche averiado, lejos de la batería. No en su negativo: puede saltar una chispa con gases de hidrógeno.</li>
+    <li>Arrancar el coche bueno, esperar 2-3 minutos y arrancar el averiado.</li>
+    <li>Retirar las pinzas en orden inverso. Mantener el coche en marcha 20-30 minutos.</li>
+  </ol>
+  <small>Con arrancador portátil: el mismo orden. Recárgalo cada 3-6 meses.</small>
+  <h3>Neumático pinchado</h3>
+  <ul>
+    <li>Kit antipinchazos (espray o compresor con sellante): sirve para pinchazos pequeños en la banda de rodadura, no para cortes en el flanco. Conducir despacio hasta el taller.</li>
+    <li><b>Rueda de repuesto:</b> coche en llano, freno de mano, marcha engranada. Aflojar las tuercas <b>antes</b> de levantar el coche, colocar el gato en el punto marcado, y apretar las tuercas en cruz.</li>
+    <li>Revisa una vez al año la presión de la rueda de repuesto y que tengas la llave de las tuercas antirrobo.</li>
+  </ul>
+  <h3>Fusibles y testigos</h3>
+  <ul>
+    <li>Algo eléctrico deja de funcionar (mechero de 12 V, luces): mirar el fusible en la caja que indica el manual. Cambiarlo <b>siempre por otro del mismo amperaje</b> (mismo color). Si vuelve a fundirse, hay un fallo; no poner uno mayor.</li>
+    <li><b>Temperatura alta:</b> parar y apagar. <b>Nunca abrir el tapón del radiador en caliente.</b> Esperar 30 minutos y rellenar con anticongelante, o con agua en emergencia.</li>
+  </ul>
+  <h3>Bicicleta (transporte sin combustible)</h3>
+  <ul>
+    <li><b>Pinchazo:</b> desmontar la cubierta con desmontables, inflar un poco la cámara para encontrar el agujero (o sumergirla en agua), lijar la zona, aplicar parche con su pegamento y esperar a que seque. Revisar el interior de la cubierta antes de montar.</li>
+    <li>Cadena seca o ruidosa: limpiar y lubricar con aceite de cadena. Frenos: ajustar la tensión del cable con el tensor de la maneta.</li>
+    <li>Kit mínimo: cámara de repuesto, parches, desmontables, bomba y multiherramienta.</li>
+  </ul>
+</section>
+
+<!-- ============ B7-F06 ============ -->
+<section class="ficha" id="B7-F06">
+  <div class="ficha-header">
+    <span class="ficha-id">B7-F06</span>
+    <span class="ficha-title">Ropa, calzado y equipo</span>
+    <span class="ficha-time">10 - 30 MIN</span>
+  </div>
+  <div class="golden-rule">REGLA DE ORO: cuando no hay tiendas, la ropa y el calzado son equipo. Un descosido que se arregla hoy no se convierte mañana en una prenda perdida.</div>
+  <h3>Costura básica</h3>
+  <ul>
+    <li><b>Kit:</b> agujas de varios tamaños, hilo resistente (poliéster) negro, blanco y gris, hilo de nailon grueso para mochilas y lonas, alfileres, imperdibles, tijeras, botones y parches termoadhesivos.</li>
+    <li><b>Descosido:</b> pespunte o punto atrás (cada puntada vuelve hasta la mitad de la anterior). Es el más resistente a mano.</li>
+    <li><b>Roto:</b> parche por dentro, cosido alrededor con puntadas pequeñas. Parche termoadhesivo si hay plancha.</li>
+    <li><b>Botón:</b> dejar una holgura con un palillo entre botón y tela, enrollar el hilo bajo el botón para formar un tallo y rematar.</li>
+  </ul>
+  <h3>Cremalleras</h3>
+  <ul>
+    <li>Dura: frotar los dientes con un lápiz de grafito o una vela.</li>
+    <li>Se abre detrás del cursor: apretar el cursor ligeramente con alicates por los dos lados.</li>
+    <li>Diente arrancado arriba: un par de puntadas de tope por encima del fallo para limitar el recorrido.</li>
+  </ul>
+  <h3>Calzado</h3>
+  <ul>
+    <li><b>Suela despegada:</b> limpiar y lijar ligeramente, pegamento de contacto en las dos caras, esperar 10 minutos, presionar con fuerza (sargento o peso) durante horas.</li>
+    <li>Cordones de repuesto. En emergencia, paracord.</li>
+  </ul>
+  <h3>Mochilas, lonas y correas</h3>
+  <ul>
+    <li><b>Hebilla rota:</b> sustituir por bridas o por un nudo con paracord.</li>
+    <li><b>Correa descosida:</b> hilo de nailon con puntada en caja (un rectángulo con una X dentro). Es la costura de carga.</li>
+    <li><b>Desgarro en lona o plástico:</b> cinta americana por las dos caras, con las esquinas redondeadas para que no se despegue.</li>
+  </ul>
+</section>
+
+<footer>
+  <strong>Fuentes y verificación</strong>
+  <ul>
+    <li>Fin de la Onda Media de RNE (30-12-2025) y DAB+ desde Izaña: comunicados de RNE/WorldDAB.</li>
+    <li>Frecuencias FM de RNE en Tenerife: listado oficial de emisoras de RNE en FM (Ministerio, espectro radioeléctrico). Revisar una vez al año.</li>
+    <li>Consumos de agua: estándares humanitarios Esfera.</li>
+    <li>Dosis de cloro: objetivo de unos 5 mg/L, equivalente a la pauta de 2 gotas de lejía de uso doméstico por litro.</li>
+    <li>Suero oral: composición de baja osmolaridad de la OMS y receta casera de 6 cucharaditas de azúcar y ½ de sal por litro.</li>
+    <li>Dakin: diluciones habituales de 0,025-0,5 %; la concentración completa es citotóxica.</li>
+    <li>Jabón: índice de saponificación con NaOH de ≈ 0,135 para oliva y ≈ 0,134 para girasol.</li>
+    <li>Reserva de jabón: estándares humanitarios Esfera.</li>
+    <li>Necesidad energética de planificación: 2.100 kcal/persona/día (estándares Esfera).</li>
+    <li>Ciguatera en Canarias: investigaciones de la ULPGC y la ULL (medregal y mero como especies de mayor impacto).</li>
+    <li>Ring Alarm: especificaciones técnicas del fabricante (batería de la base de hasta 24 h; respaldo móvil con suscripción).</li>
+    <li>Legítima defensa: art. 20.4 del Código Penal (agresión ilegítima, necesidad racional del medio, falta de provocación).</li>
+    <li>Bloque 6: guía TCCC 2024 (descompresión en el 5.º espacio intercostal línea axilar anterior o 2.º espacio línea medioclavicular; máximo 2 intentos), revisión de reanimación en quemados de atención prolongada (JSOM 2019: vía oral factible en quemaduras del 15-40 %), pautas OMS de deshidratación, ERC/AHA de RCP y fichas técnicas de los fármacos. Revisar cada año.</li>
+  </ul>
+  <p>Repasa este manual cada 12 meses: frecuencias, caducidades y rotación de agua, pilas y medicación.</p>
+</footer>
+
+<script>
+/* ===== Tema claro/oscuro (preferencia local, opcional) ===== */
+(function(){
+  var root=document.documentElement, btn=document.getElementById('tema');
+  function set(t){root.setAttribute('data-theme',t);btn.textContent=t==='light'?'Modo oscuro':'Modo claro';try{localStorage.setItem('tema',t)}catch(e){}}
+  var t='dark';try{t=localStorage.getItem('tema')||'dark'}catch(e){}
+  set(t);
+  btn.addEventListener('click',function(){set(root.getAttribute('data-theme')==='light'?'dark':'light')});
+})();
+
+function fmt(n,d){return n.toLocaleString('es-ES',{maximumFractionDigits:d,minimumFractionDigits:d})}
+
+/* ===== Cloración: objetivo 5 mg/L ===== */
+function calcCloro(){
+  var L=parseFloat(document.getElementById('cL').value)||0;
+  var conc=parseFloat(document.getElementById('cP').value); // g/L = mg/ml
+  var f=parseFloat(document.getElementById('cE').value);
+  var ml=L*5*f/conc, gotas=Math.round(ml*20);
+  var esMadre=conc<10, txt;
+  if(L<=0){txt='Introduce los litros.';}
+  else if(!esMadre && ml<1){txt='Añadir <b>'+gotas+' gotas</b> ('+fmt(ml,2)+' ml) de lejía.';}
+  else if(!esMadre){txt='Añadir <b>'+fmt(ml,1)+' ml</b> de lejía (≈ '+gotas+' gotas).';}
+  else if(ml<1000){txt='Añadir <b>'+fmt(ml,0)+' ml</b> de solución madre.';}
+  else{txt='Añadir <b>'+fmt(ml/1000,2)+' L</b> de solución madre.';}
+  if(L>0) txt+=' Agitar y esperar <b>'+(f>1?'60':'30')+' min</b> a la sombra. Debe oler ligeramente a cloro.';
+  document.getElementById('cOut').innerHTML=txt;
+}
+/* ===== Autonomía de agua ===== */
+function calcAgua(){
+  var r=parseFloat(document.getElementById('aRes').value)||0;
+  var p=Math.max(1,parseFloat(document.getElementById('aPer').value)||1);
+  var c=parseFloat(document.getElementById('aCon').value);
+  var dia=p*c, dias=r/dia;
+  document.getElementById('aOut').innerHTML='Consumo: <b>'+fmt(dia,1)+' L/día</b> · Autonomía: <b>'+fmt(Math.floor(dias),0)+' días</b>.';
+}
+/* ===== Autonomía eléctrica ===== */
+function calcEnergia(){
+  var cap=parseFloat(document.getElementById('eCap').value)||0;
+  var con=Math.max(1,parseFloat(document.getElementById('eCon').value)||1);
+  var pan=parseFloat(document.getElementById('ePan').value)||0;
+  var hsp=parseFloat(document.getElementById('eHsp').value);
+  var util=cap*0.85, sol=pan*hsp*0.75, sinSol=util/con, bal=sol-con, txt;
+  txt='Capacidad útil ≈ <b>'+fmt(util,0)+' Wh</b> → <b>'+fmt(sinSol,1)+' días</b> sin sol. ';
+  if(sol>0){
+    txt+='Producción solar ≈ <b>'+fmt(sol,0)+' Wh/día</b>. ';
+    if(bal>=0){txt+='<span style="color:var(--ok)"><b>Balance positivo</b></span>: sostenible mientras haya sol.';}
+    else{var d=util/(-bal);txt+='<span style="color:var(--danger)"><b>Déficit de '+fmt(-bal,0)+' Wh/día</b></span>: aguanta ≈ '+fmt(d,1)+' días. Recorta consumo.';}
+  }
+  document.getElementById('eOut').innerHTML=txt;
+}
+['cL','cP','cE'].forEach(function(id){document.getElementById(id).addEventListener('input',calcCloro)});
+['aRes','aPer','aCon'].forEach(function(id){document.getElementById(id).addEventListener('input',calcAgua)});
+['eCap','eCon','ePan','eHsp'].forEach(function(id){document.getElementById(id).addEventListener('input',calcEnergia)});
+calcCloro();calcAgua();calcEnergia();
+
+/* ===== Dakin ===== */
+function calcDakin(){
+  var v=parseFloat(document.getElementById('dV').value)||0;
+  var c=parseFloat(document.getElementById('dL').value);
+  var p=parseFloat(document.getElementById('dP').value);
+  var ml=v*(p*10)/c, agua=v-ml, bic=v/1000*2.5;
+  document.getElementById('dOut').innerHTML=v>0
+    ?'Lejía: <b>'+fmt(ml,1)+' ml</b> + agua hervida hasta <b>'+fmt(v,0)+' ml</b> (≈ '+fmt(agua,0)+' ml) + bicarbonato <b>'+fmt(bic,1)+' g</b>. Caduca en 24-48 h.'
+    :'Introduce el volumen.';
+}
+/* ===== Jabón (NaOH) ===== */
+function calcJabon(){
+  var a=parseFloat(document.getElementById('jA').value)||0;
+  var t=document.getElementById('jT').value.split('|');
+  var sap=parseFloat(t[0]);
+  var sf=parseFloat(document.getElementById('jS').value);
+  if(t[1]&&sf<parseFloat(t[1])){sf=parseFloat(t[1]);}
+  var naoh=a*sap*(1-sf/100), agua=a*0.30;
+  document.getElementById('jOut').innerHTML=a>0
+    ?'Sosa cáustica: <b>'+fmt(naoh,0)+' g</b> · Agua: <b>'+fmt(agua,0)+' g</b> · Sobreengrasado aplicado: '+sf+' %. Pesa la sosa con báscula de cocina, nunca a ojo.'
+    :'Introduce los gramos de aceite.';
+}
+['dV','dL','dP'].forEach(function(id){document.getElementById(id).addEventListener('input',calcDakin)});
+['jA','jT','jS'].forEach(function(id){document.getElementById(id).addEventListener('input',calcJabon)});
+calcDakin();calcJabon();
+
+/* ===== Despensa ===== */
+function calcDespensa(){
+  var a=Math.max(0,parseFloat(document.getElementById('pA').value)||0);
+  var n=Math.max(0,parseFloat(document.getElementById('pN').value)||0);
+  var d=Math.max(1,parseFloat(document.getElementById('pD').value)||1);
+  var kcal=(a*2100+n*1500)*d, kg=kcal/3500;
+  document.getElementById('pOut').innerHTML=(a+n)>0
+    ?'Necesitas ≈ <b>'+fmt(kcal,0)+' kcal</b>, unos <b>'+fmt(kg,0)+' kg</b> de alimento seco de despensa (media ≈ 3.500 kcal/kg). Cálculo con 2.100 kcal por adulto y 1.500 por niño.'
+    :'Introduce el número de personas.';
+}
+['pA','pN','pD'].forEach(function(id){document.getElementById(id).addEventListener('input',calcDespensa)});
+calcDespensa();
+
+/* ===== Listas de comprobación (se recuerdan en este dispositivo) ===== */
+document.querySelectorAll('ul.check').forEach(function(ul,u){
+  var sec=ul.closest('section'), base=(sec?sec.id:'x')+'-'+u;
+  ul.querySelectorAll('li').forEach(function(li,i){
+    var key='chk-'+base+'-'+i, cb=document.createElement('input');
+    cb.type='checkbox'; cb.setAttribute('aria-label','Hecho');
+    try{cb.checked=localStorage.getItem(key)==='1'}catch(e){}
+    cb.addEventListener('change',function(){try{localStorage.setItem(key,cb.checked?'1':'0')}catch(e){}});
+    var span=document.createElement('span'); while(li.firstChild){span.appendChild(li.firstChild)}
+    li.appendChild(cb); li.appendChild(span);
+  });
+});
+
+/* ===== Buscador ===== */
+document.getElementById('buscar').addEventListener('input',function(){
+  var q=this.value.trim().toLowerCase();
+  document.querySelectorAll('.ficha').forEach(function(f){
+    f.style.display=(!q||f.textContent.toLowerCase().indexOf(q)>-1)?'':'none';
+  });
+});
+
+/* ===== Funcionamiento sin conexión ===== */
+if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){
+  window.addEventListener('load',function(){navigator.serviceWorker.register('./sw.js').catch(function(){})});
+}
+</script>
+</body>
+</html>
